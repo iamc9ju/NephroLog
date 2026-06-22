@@ -1,0 +1,350 @@
+.container {
+  min-height: 100vh;
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+}
+
+.loadingContainer, .errorContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 32px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.header {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  border-bottom: 1px solid var(--surface-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+}
+
+.backBtn:hover {
+  background-color: var(--surface-border);
+  color: var(--text-primary);
+}
+
+.patientBanner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.patientBanner strong {
+  color: var(--text-primary);
+  font-size: 16px;
+}
+
+.patientHn {
+  background-color: var(--surface-border);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: var(--font-outfit);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.cycleBadge {
+  background-color: var(--primary-light);
+  color: var(--primary);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+@media (max-width: 768px) {
+  .patientBanner {
+    display: none;
+  }
+}
+
+/* Progress Bar Visualizer */
+.progressContainer {
+  padding: 20px 24px;
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--surface-border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.progressHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.progressText strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.progressPercent {
+  font-weight: 700;
+  font-family: var(--font-outfit);
+  color: var(--primary);
+}
+
+.progressBarBg {
+  width: 100%;
+  height: 8px;
+  background-color: var(--primary-light);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progressBarFill {
+  height: 100%;
+  background-color: var(--primary);
+  border-radius: var(--radius-full);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* Main Panel Layout */
+.mainContent {
+  flex: 1;
+  padding: 40px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.cardPanel {
+  width: 100%;
+  max-width: 800px;
+  padding: 40px;
+}
+
+.stepContent {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.stepHeader h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.stepHeader p {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.formGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.errorText {
+  color: var(--danger);
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+}
+
+.actionsBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  border-top: 1px solid var(--surface-border);
+  padding-top: 24px;
+}
+
+/* Timer styles */
+.timerBox {
+  background: linear-gradient(135deg, rgba(13, 148, 136, 0.1) 0%, rgba(13, 148, 136, 0) 100%);
+  border: 1px solid rgba(13, 148, 136, 0.15);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.timerTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.timerValue {
+  font-size: 64px;
+  font-weight: 800;
+  font-family: var(--font-outfit), monospace;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.timerStartText {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Countdown Styles */
+.countdownWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 24px;
+}
+
+.countdownCircle {
+  width: 120px;
+  height: 120px;
+  border-radius: var(--radius-full);
+  border: 8px solid var(--primary-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  animation: pulseBorder 1.5s infinite;
+}
+
+.countdownCompleted {
+  border-color: var(--success);
+  animation: none;
+  background-color: var(--success-light);
+}
+
+.countdownNumber {
+  font-size: 40px;
+  font-weight: 700;
+  font-family: var(--font-outfit);
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+.countdownLabel {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.countdownText {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* Summary stats box */
+.summaryStatsBox {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 560px) {
+  .summaryStatsBox {
+    grid-template-columns: 1fr;
+  }
+}
+
+.summaryCard {
+  background-color: var(--background);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.summaryCard span {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.summaryCard strong {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: var(--font-outfit);
+}
+
+.ufSummaryCard {
+  border: none;
+}
+
+@media (max-width: 600px) {
+  .cardPanel {
+    padding: 24px 16px;
+  }
+  .progressContainer {
+    padding: 16px 20px;
+  }
+  .mainContent {
+    padding: 16px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .timerBox {
+    padding: 20px 16px;
+  }
+  .timerValue {
+    font-size: 48px;
+  }
+  .actionsBar {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  .actionsBar button {
+    width: 100%;
+  }
+}
+

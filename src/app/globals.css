@@ -1,26 +1,336 @@
-@import "tailwindcss";
-
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Clean Minimal Monochrome Theme (Inspired by blocks/shadcn UIs) */
+  --primary: #09090b; /* Zinc 950 (Black) */
+  --primary-hover: #27272a; /* Zinc 800 */
+  --primary-light: #f4f4f5; /* Zinc 100 */
+  --primary-dark: #09090b;
+  
+  --secondary: #09090b;
+  --secondary-hover: #27272a;
+  --secondary-light: #f4f4f5;
+  
+  --background: #fafafa; /* Zinc 50 */
+  --surface: #ffffff;
+  --surface-border: #e4e4e7; /* Zinc 200 */
+  
+  --text-primary: #09090b; /* Zinc 950 */
+  --text-secondary: #71717a; /* Zinc 500 */
+  --text-muted: #a1a1aa; /* Zinc 400 */
+  
+  --success: #10b981; /* Emerald 500 */
+  --success-light: #f0fdf4; /* Emerald 50 */
+  --warning: #f59e0b; /* Amber 500 */
+  --warning-light: #fffbeb; /* Amber 50 */
+  --danger: #ef4444; /* Rose 500 */
+  --danger-light: #fef2f2; /* Rose 50 */
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  
+  --radius-sm: 6px;
+  --radius-md: 8px; /* Slightly tighter rounded corners for form inputs */
+  --radius-lg: 16px; /* Cards */
+  --radius-full: 9999px; /* Buttons and Badges */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  --font-family: var(--font-anuphan), var(--font-outfit), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #09090b; /* Deep zinc black */
+    --surface: #09090b; /* Solid black */
+    --surface-border: #27272a; /* Zinc 800 */
+    
+    --text-primary: #fafafa;
+    --text-secondary: #a1a1aa;
+    --text-muted: #52525b;
+    
+    --primary-light: #27272a;
+    --secondary-light: #27272a;
+    
+    --primary: #ffffff;
+    --primary-hover: #e4e4e7;
+    --secondary: #ffffff;
+    --secondary-hover: #e4e4e7;
+    
+    --success: #10b981;
+    --success-light: rgba(16, 185, 129, 0.15);
+    --warning: #f59e0b;
+    --warning-light: rgba(245, 158, 11, 0.15);
+    --danger: #ef4444;
+    --danger-light: rgba(239, 68, 68, 0.15);
+    
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
   }
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseBorder {
+  0% { box-shadow: 0 0 0 0 rgba(9, 9, 11, 0.2); }
+  70% { box-shadow: 0 0 0 8px rgba(9, 9, 11, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(9, 9, 11, 0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Glassmorphism Effect */
+.glass {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(228, 228, 231, 0.6);
+}
+@media (prefers-color-scheme: dark) {
+  .glass {
+    background: rgba(9, 9, 11, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* Form controls */
+input, select, textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--surface-border);
+  background-color: var(--surface);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: 14px;
+  transition: var(--transition);
+  outline: none;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--text-primary);
+  box-shadow: 0 0 0 2px rgba(9, 9, 11, 0.05);
+}
+
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+/* Custom classes for layout and visual styling */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: var(--radius-full); /* Fully rounded pill shape like in blocks UI */
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: var(--transition);
+  gap: 8px;
+  font-family: var(--font-family);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--surface);
+}
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--primary-light);
+  color: var(--text-primary);
+  border: 1px solid var(--surface-border);
+}
+.btn-secondary:hover {
+  background-color: var(--surface-border);
+}
+
+.btn-danger {
+  background-color: var(--danger-light);
+  color: var(--danger);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+.btn-danger:hover {
+  background-color: var(--danger);
+  color: white;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Badge classes */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+}
+
+.badge-success {
+  background-color: var(--success-light);
+  color: var(--success);
+  border-color: rgba(16, 185, 129, 0.15);
+}
+.badge-warning {
+  background-color: var(--warning-light);
+  color: var(--warning);
+  border-color: rgba(245, 158, 11, 0.15);
+}
+.badge-danger {
+  background-color: var(--danger-light);
+  color: var(--danger);
+  border-color: rgba(239, 68, 68, 0.15);
+}
+.badge-primary {
+  background-color: var(--primary-light);
+  color: var(--text-primary);
+  border-color: var(--surface-border);
+}
+.badge-secondary {
+  background-color: var(--primary-light);
+  color: var(--text-secondary);
+  border-color: var(--surface-border);
+}
+
+@media (prefers-color-scheme: dark) {
+  .badge-success { color: #34d399; }
+  .badge-warning { color: #fbbf24; }
+  .badge-danger { color: #f87171; }
+  .badge-primary { color: #fafafa; }
+  .badge-secondary { color: #a1a1aa; }
+}
+
+/* Global Navigation Header Styling (KU Green Theme) */
+header {
+  background-color: #35A969 !important;
+  color: #ffffff !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+header * {
+  color: #ffffff !important;
+}
+
+header svg {
+  color: #ffffff !important;
+}
+
+header button, header a {
+  color: #ffffff !important;
+}
+
+header button:hover, header a:hover {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+}
+
+/* Specific styling for buttons inside header (e.g. backBtn, logoutBtn) */
+header button[class*="backBtn"] {
+  color: #ffffff !important;
+}
+header button[class*="backBtn"]:hover {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+}
+
+header button[class*="logoutBtn"] {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+}
+header button[class*="logoutBtn"]:hover {
+  background-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Fix visibility of danger button in header */
+header button.btn-danger, header button[class*="btn-danger"] {
+  background-color: #ef4444 !important;
+  color: #ffffff !important;
+  border: 1px solid #dc2626 !important;
+}
+header button.btn-danger:hover, header button[class*="btn-danger"]:hover {
+  background-color: #dc2626 !important;
+  color: #ffffff !important;
+}
+
+/* Fix badges visibility in header (glassmorphism style pills) */
+header [class*="patientHn"], header [class*="cycleBadge"], header [class*="hnLabel"], header [class*="hnBadge"] {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }

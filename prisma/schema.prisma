@@ -1,0 +1,75 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Nurse {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  password  String
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Patient {
+  id          String   @id @default(uuid())
+  hn          String   @unique // Hospital Number (e.g. HN12345)
+  firstName   String
+  lastName    String
+  birthDate   DateTime
+  bloodGroup  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  sessions    Session[]
+}
+
+model Session {
+  id            String   @id @default(uuid())
+  patientId     String
+  patient       Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  nurseName     String   // Nurse who recorded this
+  cycleNumber   Int      // Cycle number of the day
+  status        String   // "PREPARATION", "DRAINING", "FLUSHING", "FILLING", "COMPLETED", "CANCELLED"
+  
+  // Step 1: Preparation
+  preWeight     Float?   // Patient weight before start (kg)
+  preBpSys      Int?     // Blood pressure systolic (mmHg)
+  preBpDia      Int?     // Blood pressure diastolic (mmHg)
+  prePulse      Int?     // Pulse rate (bpm)
+  preTemp       Float?   // Body temperature (°C)
+  
+  // Step 2: Drain
+  drainStartTime DateTime?
+  drainEndTime   DateTime?
+  drainVolume    Float?   // Output dialysate volume (mL)
+  drainColor     String?  // Clear, Cloudy, Bloody, Fibrin
+  
+  // Step 3: Flush
+  flushTime      DateTime?
+  
+  // Step 4: Fill
+  fillStartTime  DateTime?
+  fillEndTime    DateTime?
+  fillVolume     Float?   // Input dialysate volume (mL)
+  dextrosePct    Float?   // Dextrose concentration (1.5%, 2.5%, 4.25%)
+  
+  // Step 5: Post-exchange (Summary)
+  postWeight    Float?   // Patient weight after (kg)
+  postBpSys     Int?
+  postBpDia     Int?
+  postPulse     Int?
+  postTemp      Float?
+  netUf         Float?   // Net Ultrafiltration (mL) = drainVolume - fillVolume
+  symptoms      String?  // Symptoms or complications
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}

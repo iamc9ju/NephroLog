@@ -1,0 +1,390 @@
+.container {
+  min-height: 100vh;
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  height: 64px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--surface-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.divider {
+  color: var(--surface-border);
+}
+
+.nurseIdentity {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.logoutBtn {
+  font-size: 14px;
+  padding: 6px 12px;
+  gap: 6px;
+}
+
+.main {
+  flex: 1;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.statCard {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.statIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.statInfo h3 {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.statValue {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.1;
+  font-family: var(--font-outfit), var(--font-family);
+}
+
+.statValue span {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.statSubText {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.dashboardSplit {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (max-width: 1024px) {
+  .dashboardSplit {
+    grid-template-columns: 1fr;
+  }
+}
+
+.activeSection, .patientsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sectionHeader h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.emptyState {
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--text-secondary);
+  border-style: dashed;
+}
+
+.emptyState span {
+  font-size: 13px;
+  color: var(--text-muted);
+  display: block;
+  margin-top: 8px;
+}
+
+.activeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.activeCard {
+  border-left: 4px solid var(--primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.activeCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.activeCardHeader h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.hnTag {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-family: var(--font-outfit);
+}
+
+.activeDetails {
+  font-size: 14px;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.searchBar {
+  position: relative;
+  width: 100%;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.searchBar input {
+  padding-left: 46px;
+}
+
+.tableContainer {
+  background-color: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table th {
+  background-color: var(--background);
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--surface-border);
+}
+
+@media (prefers-color-scheme: dark) {
+  .table th {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+}
+
+.table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--surface-border);
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table tbody tr:hover {
+  background-color: rgba(13, 148, 136, 0.02);
+}
+
+.hnCell {
+  font-family: var(--font-outfit);
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.patientNameCol {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.patientNameCol strong {
+  color: var(--text-primary);
+}
+
+.patientNameCol span {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.bloodTag {
+  font-weight: 700;
+  font-family: var(--font-outfit);
+  padding: 2px 8px;
+  border-radius: 4px;
+  background-color: var(--background);
+  border: 1px solid var(--surface-border);
+  font-size: 12px;
+}
+
+.actionCell {
+  display: flex;
+  gap: 8px;
+}
+
+.noDataCell {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-muted);
+}
+
+/* Modals */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modalCard {
+  width: 100%;
+  max-width: 560px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--surface-border);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.modalHeader h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  line-height: 1;
+}
+
+.closeBtn:hover {
+  color: var(--danger);
+}
+
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modalFormGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+@media (max-width: 640px) {
+  .divider, .nurseIdentity {
+    display: none;
+  }
+  .header {
+    padding: 0 16px;
+  }
+  .main {
+    padding: 16px;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modalFormGrid {
+    grid-template-columns: 1fr;
+  }
+  .modalCard {
+    padding: 20px 16px;
+  }
+}
+
