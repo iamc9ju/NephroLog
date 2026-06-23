@@ -18,18 +18,21 @@
 }
 
 .header {
-  margin: 20px 24px 0 24px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
   background: linear-gradient(135deg, var(--surface) 0%, var(--primary-light) 100%);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(228, 228, 231, 0.6);
-  border-radius: 24px;
+  border-bottom: 1px solid rgba(228, 228, 231, 0.6);
+  border-radius: 0 0 24px 24px;
   padding: 12px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.03), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
-  position: relative;
-  overflow: hidden;
+  overflow: visible;
   gap: 12px;
 }
 
@@ -95,6 +98,7 @@
 
 /* Progress Bar */
 .progressContainer {
+  margin-top: 60px;
   padding: 16px 20px;
   background-color: var(--surface);
   border-bottom: 1px solid var(--surface-border);
@@ -326,7 +330,7 @@
 /* Tablet: ≤768px */
 @media (max-width: 768px) {
   .header {
-    margin: 16px 16px 0 16px;
+    margin: 0;
     padding: 10px 16px;
   }
   .patientBanner {
@@ -339,6 +343,7 @@
     padding: 16px 8px;
   }
   .progressContainer {
+    margin-top: 56px;
     padding: 12px 16px;
   }
   .timerValue {
@@ -360,10 +365,13 @@
 /* Mobile: ≤480px */
 @media (max-width: 480px) {
   .header {
-    margin: 12px 12px 0 12px;
+    margin: 0;
     padding: 8px 12px;
     min-height: auto;
-    border-radius: 20px;
+    border-radius: 0 0 20px 20px;
+  }
+  .progressContainer {
+    margin-top: 46px;
   }
   .backBtn {
     font-size: 13px;
