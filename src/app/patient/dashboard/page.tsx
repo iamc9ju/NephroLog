@@ -642,8 +642,9 @@ export default function PatientDashboard() {
 
             {/* Statistics KPI Grid */}
             <div className={styles.statsGrid}>
-              <div className={styles.statsCard}>
-                <div className={styles.statsIcon}>
+              {/* Card 1: รอบบันทึกทั้งหมด */}
+              <div className={`${styles.statsCard} ${styles.statsCardBlue}`}>
+                <div className={styles.statsIconBlueCircle}>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="18" y1="20" x2="18" y2="10"></line>
                     <line x1="12" y1="20" x2="12" y2="4"></line>
@@ -652,12 +653,48 @@ export default function PatientDashboard() {
                 </div>
                 <div className={styles.statsData}>
                   <span className={styles.statsLabel}>รอบบันทึกทั้งหมด</span>
-                  <strong className={styles.statsValue}>{sessions.length} รอบ</strong>
+                  <strong className={styles.statsValue}>
+                    {sessions.length} <span className={styles.statsUnit}>รอบ</span>
+                  </strong>
                 </div>
+                {/* Clipboard 3D Illust SVG */}
+                <svg width="72" height="72" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.statsCardBgIllust}>
+                  <defs>
+                    <linearGradient id="clipboard-grad" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stopColor="#60a5fa" />
+                      <stop offset="100%" stopColor="#2563eb" />
+                    </linearGradient>
+                    <linearGradient id="shadow-grad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#cbd5e1" stopOpacity="0.5" />
+                      <stop offset="100%" stopColor="#cbd5e1" stopOpacity="0" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M10 50 C 20 20, 80 15, 90 40 C 95 60, 75 90, 45 85 C 20 80, 5 70, 10 50 Z" fill="#eff6ff" opacity="0.6"/>
+                  <rect x="26" y="24" width="48" height="58" rx="8" fill="url(#shadow-grad)" transform="translate(4, 4)"/>
+                  <rect x="26" y="24" width="48" height="58" rx="8" fill="#ffffff" stroke="#dbeafe" strokeWidth="2"/>
+                  <rect x="40" y="16" width="20" height="12" rx="4" fill="url(#clipboard-grad)" />
+                  <circle cx="50" cy="22" r="3" fill="#ffffff"/>
+                  <g transform="translate(34, 38)">
+                    <path d="M 0 4 L 4 8 L 12 0" stroke="#3b82f6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <line x1="18" y1="5" x2="36" y2="5" stroke="#94a3b8" strokeWidth="2.5" strokeLinecap="round"/>
+                    <g transform="translate(0, 14)">
+                      <path d="M 0 4 L 4 8 L 12 0" stroke="#3b82f6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <line x1="18" y1="5" x2="36" y2="5" stroke="#94a3b8" strokeWidth="2.5" strokeLinecap="round"/>
+                    </g>
+                    <g transform="translate(0, 28)">
+                      <path d="M 0 4 L 4 8 L 12 0" stroke="#3b82f6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <line x1="18" y1="5" x2="30" y2="5" stroke="#94a3b8" strokeWidth="2.5" strokeLinecap="round"/>
+                    </g>
+                  </g>
+                  <path d="M 15 20 L 17 25 L 22 27 L 17 29 L 15 34 L 13 29 L 8 27 L 13 25 Z" fill="#93c5fd" opacity="0.8"/>
+                  <circle cx="82" cy="30" r="3" fill="#60a5fa" opacity="0.6"/>
+                  <circle cx="20" cy="75" r="4" fill="#93c5fd" opacity="0.5"/>
+                </svg>
               </div>
               
-              <div className={styles.statsCard}>
-                <div className={styles.statsIcon}>
+              {/* Card 2: ค่าเฉลี่ย Net UF */}
+              <div className={`${styles.statsCard} ${styles.statsCardRed}`}>
+                <div className={styles.statsIconRedCircle}>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M12 22a7 7 0 0 0 7-7c0-4.3-7-11-7-11S5 10.7 5 15a7 7 0 0 0 7 7z" />
                   </svg>
@@ -665,24 +702,73 @@ export default function PatientDashboard() {
                 <div className={styles.statsData}>
                   <span className={styles.statsLabel}>ค่าเฉลี่ย Net UF</span>
                   <strong className={`${styles.statsValue} ${avgNetUf >= 0 ? styles.textSuccess : styles.textDanger}`}>
-                    {avgNetUf >= 0 ? `+${avgNetUf}` : avgNetUf} mL
+                    {avgNetUf >= 0 ? `+${avgNetUf}` : avgNetUf} <span className={styles.statsUnit}>mL</span>
                   </strong>
                 </div>
+                {/* Dialysate Bag 3D Illust SVG */}
+                <svg width="72" height="72" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.statsCardBgIllust}>
+                  <defs>
+                    <linearGradient id="fluid-grad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#fca5a5" />
+                      <stop offset="100%" stopColor="#ef4444" />
+                    </linearGradient>
+                    <linearGradient id="bag-outline-grad" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stopColor="#ffffff" stopOpacity="0.8" />
+                      <stop offset="100%" stopColor="#fee2e2" stopOpacity="0.5" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M12 45 C 22 15, 78 20, 88 45 C 92 65, 80 88, 50 82 C 25 78, 8 68, 12 45 Z" fill="#fef2f2" opacity="0.6"/>
+                  <rect x="28" y="20" width="44" height="54" rx="10" fill="#cbd5e1" opacity="0.15" transform="translate(3, 3)"/>
+                  <path d="M 42 20 L 58 20 L 54 13 L 46 13 Z" fill="#fee2e2" stroke="#fca5a5" strokeWidth="1.5"/>
+                  <circle cx="50" cy="16" r="3" fill="#ffffff" stroke="#fca5a5" strokeWidth="1.5"/>
+                  <rect x="28" y="20" width="44" height="54" rx="10" fill="url(#bag-outline-grad)" stroke="#fca5a5" strokeWidth="2" strokeOpacity="0.8"/>
+                  <rect x="32" y="38" width="36" height="32" rx="6" fill="url(#fluid-grad)" />
+                  <g stroke="#ffffff" strokeWidth="1.5" strokeOpacity="0.6" transform="translate(36, 42)">
+                    <line x1="0" y1="0" x2="6" y2="0" />
+                    <line x1="0" y1="6" x2="4" y2="6" />
+                    <line x1="0" y1="12" x2="6" y2="12" />
+                    <line x1="0" y1="18" x2="4" y2="18" />
+                    <line x1="0" y1="24" x2="6" y2="24" />
+                  </g>
+                  <path d="M 50 74 L 50 82 A 8 8 0 0 0 58 90 M 46 80 L 46 84" stroke="#fca5a5" strokeWidth="2.5" strokeLinecap="round"/>
+                  <circle cx="46" cy="85" r="2" fill="#ef4444"/>
+                  <path d="M 82 25 L 84 30 L 89 32 L 84 34 L 82 39 L 80 34 L 75 32 L 80 30 Z" fill="#fca5a5" opacity="0.8"/>
+                  <circle cx="18" cy="32" r="3" fill="#ef4444" opacity="0.5"/>
+                </svg>
               </div>
-
-              <div className={styles.statsCard}>
-                <div className={styles.statsIcon}>
+              
+              {/* Card 3: น้ำยาออกใสปกติ */}
+              <div className={`${styles.statsCard} ${styles.statsCardGreen}`}>
+                <div className={styles.statsIconGreenCircle}>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                    <polyline points="22 4 12 14.01 9 11.01" />
+                    <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                 </div>
                 <div className={styles.statsData}>
                   <span className={styles.statsLabel}>น้ำยาออกใสปกติ</span>
-                  <strong className={styles.statsValue}>
+                  <strong className={styles.statsValue} style={{ color: '#16a34a' }}>
                     {sessions.length > 0 ? `${Math.round((normalDrainCount / sessions.length) * 100)}%` : '0%'}
                   </strong>
                 </div>
+                {/* Shield 3D Illust SVG */}
+                <svg width="72" height="72" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.statsCardBgIllust}>
+                  <defs>
+                    <linearGradient id="shield-grad" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stopColor="#60a5fa" />
+                      <stop offset="100%" stopColor="#3b82f6" />
+                    </linearGradient>
+                    <filter id="shield-glow" x="-10%" y="-10%" width="120%" height="120%">
+                      <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#3b82f6" floodOpacity="0.2" />
+                    </filter>
+                  </defs>
+                  <path d="M15 48 C 22 20, 75 12, 85 38 C 90 58, 80 85, 52 88 C 28 90, 10 72, 15 48 Z" fill="#eff6ff" opacity="0.6"/>
+                  <path d="M 30 22 C 42 22, 50 16, 50 16 C 50 16, 58 22, 70 22 C 70 42, 66 64, 50 78 C 34 64, 30 42, 30 22 Z" fill="url(#shield-grad)" stroke="#93c5fd" strokeWidth="2.5" filter="url(#shield-glow)"/>
+                  <path d="M 34 26 C 44 26, 50 21, 50 21 C 50 21, 56 26, 66 26 C 66 42, 62 60, 50 72 C 38 60, 34 42, 34 26 Z" stroke="#ffffff" strokeWidth="1.5" strokeOpacity="0.4"/>
+                  <path d="M 42 46 L 47 51 L 58 39" stroke="#ffffff" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <circle cx="82" cy="72" r="5" fill="#3b82f6" opacity="0.4"/>
+                  <circle cx="20" cy="25" r="3" fill="#60a5fa" opacity="0.5"/>
+                  <circle cx="85" cy="22" r="3" fill="#93c5fd" opacity="0.7"/>
+                </svg>
               </div>
             </div>
 
