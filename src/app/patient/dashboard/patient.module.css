@@ -18,7 +18,7 @@
 .main {
   flex: 1;
   padding: 24px;
-  padding-top: 110px;
+  padding-top: 98px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -875,7 +875,7 @@
   }
   .main {
     padding: 16px;
-    padding-top: 102px;
+    padding-top: 90px;
     gap: 16px;
   }
   .statsGrid {
@@ -930,7 +930,7 @@
 /* Mobile: ≤480px */
 @media (max-width: 480px) {
   .main {
-    padding-top: 88px;
+    padding-top: 76px;
   }
   .filterGrid {
     grid-template-columns: 1fr 1fr;

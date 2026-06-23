@@ -2,28 +2,30 @@
 
 .header {
   position: fixed;
-  top: 12px;
-  left: 12px;
-  right: 12px;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
   height: 72px;
   box-sizing: border-box;
-  border-radius: 28px;
-  padding: 10px 20px;
+  border-radius: 0 0 24px 24px;
+  padding: 10px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.03), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
   transition: border-radius 0.2s ease, box-shadow 0.2s ease;
   overflow: visible;
   gap: 12px;
   background: linear-gradient(135deg, var(--surface) 0%, var(--primary-light) 100%);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(228, 228, 231, 0.6);
+  border-top: none;
+  margin-bottom: 8px;
 }
 
 .headerMenuOpen {
-  border-radius: 28px 28px 0 0 !important;
+  border-radius: 0 !important;
   border-bottom: none !important;
   box-shadow: none !important;
 }

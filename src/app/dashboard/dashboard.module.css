@@ -8,7 +8,7 @@
 .main {
   flex: 1;
   padding: 24px;
-  padding-top: 96px;
+  padding-top: 84px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -443,7 +443,7 @@
   }
   .main {
     padding: 16px;
-    padding-top: 104px;
+    padding-top: 92px;
     gap: 16px;
   }
   .statsGrid {
