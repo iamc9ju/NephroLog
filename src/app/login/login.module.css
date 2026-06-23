@@ -173,8 +173,6 @@
   }
   .wrapper {
     padding: 16px;
-    align-items: flex-start;
-    padding-top: 40px;
   }
   .header h2 {
     font-size: 19px;
@@ -187,7 +185,6 @@
   }
   .wrapper {
     padding: 12px;
-    padding-top: 30px;
   }
   .header h2 {
     font-size: 17px;
