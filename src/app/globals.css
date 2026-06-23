@@ -142,6 +142,10 @@ body {
 }
 
 /* Form controls */
+button, input, select, textarea {
+  font-family: var(--font-family);
+}
+
 input, select, textarea {
   width: 100%;
   padding: 10px 14px;
@@ -149,7 +153,6 @@ input, select, textarea {
   border: 1px solid var(--surface-border);
   background-color: var(--surface);
   color: var(--text-primary);
-  font-family: var(--font-family);
   font-size: 14px;
   transition: var(--transition);
   outline: none;
