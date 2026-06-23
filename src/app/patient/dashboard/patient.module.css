@@ -211,23 +211,91 @@
 }
 
 .chartCard {
-  padding: 20px;
-  min-height: 220px;
+  padding: 24px;
+  background-color: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
+  gap: 20px;
+}
+
+.chartHeader {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-bottom: 1px solid rgba(228, 228, 231, 0.5);
+  padding-bottom: 16px;
+}
+
+.chartHeaderIcon {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #eff6ff;
+  display: flex;
+  align-items: center;
   justify-content: center;
+  color: #2563eb;
+  flex-shrink: 0;
+}
+
+.dropIcon {
+  width: 22px;
+  height: 22px;
+  fill: #3b82f6;
+  color: #3b82f6;
+}
+
+.plusBadge {
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background-color: #3b82f6;
+  color: white;
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+}
+
+.chartHeaderTexts {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.chartHeaderTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin: 0;
+}
+
+.chartHeaderSubtitle {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
 }
 
 .chartEmpty {
   text-align: center;
   color: var(--text-muted);
   font-size: 14px;
+  padding: 40px 0;
 }
 
 .chartWrapper {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
   width: 100%;
 }
 
@@ -240,40 +308,52 @@
 .chartLegends {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 4px;
 }
 
 .legendPos {
-  color: var(--success);
+  background-color: #f0fdf4;
+  color: #16a34a;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  border: 1px solid rgba(22, 163, 74, 0.08);
 }
+
 .legendPos::before {
   content: '';
   display: inline-block;
   width: 8px;
   height: 8px;
-  border-radius: var(--radius-full);
-  background-color: var(--success);
+  border-radius: 50%;
+  background-color: #16a34a;
 }
 
 .legendNeg {
-  color: var(--danger);
+  background-color: #fef2f2;
+  color: #ef4444;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  border: 1px solid rgba(239, 68, 68, 0.08);
 }
+
 .legendNeg::before {
   content: '';
   display: inline-block;
   width: 8px;
   height: 8px;
-  border-radius: var(--radius-full);
-  background-color: var(--danger);
+  border-radius: 50%;
+  background-color: #ef4444;
 }
 
 /* History list */

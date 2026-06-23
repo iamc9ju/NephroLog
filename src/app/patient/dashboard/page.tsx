@@ -192,24 +192,49 @@ export default function PatientDashboard() {
 
   // Render SVG Trend Chart for Net UF (limit to last 7 completed sessions, in chronological order)
   const chartSessions = [...sessions].slice(0, 7).reverse();
-  const maxUf = Math.max(...chartSessions.map(s => Math.abs(s.netUf || 0)), 500);
+
+  // Chart dimensions matching mockup exactly
+  const width = 600;
+  const height = 300;
+  const paddingLeft = 55;
+  const paddingRight = 30;
+  const paddingTop = 40;
+  const paddingBottom = 45;
+  const chartWidth = width - paddingLeft - paddingRight;
+  const chartHeight = height - paddingTop - paddingBottom;
+
+  const rawVals = chartSessions.map(s => s.netUf || 0);
+  const minRaw = Math.min(...rawVals, -600);
+  const maxRaw = Math.max(...rawVals, 200);
+
+  // Round min/max bounds to nice 200 multiples (default to range [-1000, 0] if min/max is within it)
+  const minVal = Math.min(Math.floor(minRaw / 200) * 200, -1000);
+  const maxVal = Math.max(Math.ceil(maxRaw / 200) * 200, 0);
+  const range = maxVal - minVal || 1000;
   
-  // Chart dimensions
-  const width = 500;
-  const height = 180;
-  const padding = 30;
-  const chartWidth = width - padding * 2;
-  const chartHeight = height - padding * 2;
+  const ticks = [];
+  const tickStep = range / 5;
+  for (let i = 0; i <= 5; i++) {
+    ticks.push(minVal + i * tickStep);
+  }
 
   // Compute points
   const points = chartSessions.map((s, idx) => {
-    const x = padding + (idx / (chartSessions.length - 1 || 1)) * chartWidth;
-    // Map netUf from [-maxUf, maxUf] to [height-padding, padding]
-    const y = padding + chartHeight / 2 - ((s.netUf || 0) / maxUf) * (chartHeight / 2);
-    return { x, y, val: s.netUf || 0, date: new Date(s.createdAt).toLocaleDateString('th-TH', { day: 'numeric', month: 'short' }) };
+    const x = paddingLeft + (idx / (chartSessions.length - 1 || 1)) * chartWidth;
+    const y = paddingTop + chartHeight - (((s.netUf || 0) - minVal) / range) * chartHeight;
+    return { 
+      x, 
+      y, 
+      val: s.netUf || 0, 
+      date: new Date(s.createdAt).toLocaleDateString('th-TH', { day: 'numeric', month: 'short' }) 
+    };
   });
 
   const linePath = points.map((p, idx) => `${idx === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+
+  const gradientPath = points.length > 0 
+    ? `${linePath} L ${points[points.length - 1].x} ${paddingTop + chartHeight} L ${points[0].x} ${paddingTop + chartHeight} Z`
+    : '';
 
   // Calculate statistics from the complete list of sessions
   const totalCompleted = sessions.length;
@@ -430,11 +455,20 @@ export default function PatientDashboard() {
           
           {/* Trend Chart Panel */}
           <section className={styles.chartPanelSection}>
-            <div className="sectionHeader">
-              <h2 className={styles.panelTitle}>แนวโน้มปริมาณน้ำเสียส่วนเกินที่ดึงออกได้ (Net UF Trend)</h2>
-            </div>
-            
             <div className={`${styles.chartCard} card`}>
+              <div className={styles.chartHeader}>
+                <div className={styles.chartHeaderIcon}>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={styles.dropIcon}>
+                    <path d="M12 22a7 7 0 0 0 7-7c0-4.3-7-11-7-11S5 10.7 5 15a7 7 0 0 0 7 7z" />
+                  </svg>
+                  <div className={styles.plusBadge}>+</div>
+                </div>
+                <div className={styles.chartHeaderTexts}>
+                  <h3 className={styles.chartHeaderTitle}>ค่าเฉลี่ย Net UF วันนี้</h3>
+                  <span className={styles.chartHeaderSubtitle}>ติดตามปริมาณน้ำส่วนเกินจากการฟอกไต</span>
+                </div>
+              </div>
+
               {chartSessions.length < 2 ? (
                 <div className={styles.chartEmpty}>
                   <p>ต้องการข้อมูลบันทึกสำเร็จอย่างน้อย 2 รอบขึ้นไปเพื่อพล็อตกราฟแนวโน้ม</p>
@@ -442,63 +476,157 @@ export default function PatientDashboard() {
               ) : (
                 <div className={styles.chartWrapper}>
                   <svg className={styles.svgChart} viewBox={`0 0 ${width} ${height}`} width="100%" height="100%">
-                    {/* Zero baseline */}
+                    <defs>
+                      <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feDropShadow dx="0" dy="3" stdDeviation="3" floodColor="#000000" floodOpacity="0.06" />
+                      </filter>
+                      <linearGradient id="chart-gradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.15" />
+                        <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.0" />
+                      </linearGradient>
+                    </defs>
+
+                    {/* Y-axis mL label */}
+                    <text
+                      x={paddingLeft - 12}
+                      y={paddingTop - 15}
+                      fontSize="12"
+                      fontWeight="500"
+                      textAnchor="end"
+                      fill="#94a3b8"
+                      fontFamily="var(--font-anuphan)"
+                    >
+                      mL
+                    </text>
+
+                    {/* Horizontal tick lines & labels */}
+                    {ticks.map((tick) => {
+                      const y = paddingTop + chartHeight - ((tick - minVal) / range) * chartHeight;
+                      return (
+                        <g key={tick}>
+                          <line
+                            x1={paddingLeft}
+                            y1={y}
+                            x2={width - paddingRight}
+                            y2={y}
+                            stroke={tick === 0 ? "#e2e8f0" : "rgba(228, 228, 231, 0.5)"}
+                            strokeWidth={tick === 0 ? "1.5" : "1.2"}
+                            strokeDasharray={tick === 0 ? "0" : "4 4"}
+                          />
+                          <text
+                            x={paddingLeft - 12}
+                            y={y + 4}
+                            fontSize="12"
+                            fontWeight="500"
+                            textAnchor="end"
+                            fill="#94a3b8"
+                            fontFamily="var(--font-anuphan)"
+                          >
+                            {tick}
+                          </text>
+                        </g>
+                      );
+                    })}
+
+                    {/* Bottom X-axis baseline */}
                     <line
-                      x1={padding}
-                      y1={padding + chartHeight / 2}
-                      x2={width - padding}
-                      y2={padding + chartHeight / 2}
-                      stroke="var(--surface-border)"
+                      x1={paddingLeft}
+                      y1={paddingTop + chartHeight}
+                      x2={width - paddingRight}
+                      y2={paddingTop + chartHeight}
+                      stroke="#e2e8f0"
                       strokeWidth="1.5"
-                      strokeDasharray="4"
                     />
-                    
-                    {/* Main Line path */}
-                    <path
-                      d={linePath}
-                      fill="none"
-                      stroke="var(--primary)"
-                      strokeWidth="3.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    
-                    {/* Node points */}
+                    <circle cx={paddingLeft} cy={paddingTop + chartHeight} r="3" fill="#cbd5e1" />
+                    <circle cx={width - paddingRight} cy={paddingTop + chartHeight} r="3" fill="#cbd5e1" />
+
+                    {/* Date labels at bottom */}
                     {points.map((p, idx) => (
-                      <g key={idx}>
-                        <circle
-                          cx={p.x}
-                          cy={p.y}
-                          r="6"
-                          fill="var(--surface)"
-                          stroke={p.val >= 0 ? 'var(--success)' : 'var(--danger)'}
-                          strokeWidth="3.5"
-                        />
-                        {/* Tooltip value */}
-                        <text
-                          x={p.x}
-                          y={p.y - 12}
-                          fontSize="11"
-                          fontWeight="700"
-                          textAnchor="middle"
-                          fill={p.val >= 0 ? 'var(--success)' : 'var(--danger)'}
-                          fontFamily="var(--font-outfit)"
-                        >
-                          {p.val > 0 ? `+${p.val}` : p.val}
-                        </text>
-                        {/* X-axis date labels */}
-                        <text
-                          x={p.x}
-                          y={height - 8}
-                          fontSize="10"
-                          textAnchor="middle"
-                          fill="var(--text-secondary)"
-                        >
-                          {p.date}
-                        </text>
-                      </g>
+                      <text
+                        key={idx}
+                        x={p.x}
+                        y={paddingTop + chartHeight + 22}
+                        fontSize="12"
+                        fontWeight="500"
+                        textAnchor="middle"
+                        fill="#94a3b8"
+                        fontFamily="var(--font-anuphan)"
+                      >
+                        {p.date}
+                      </text>
                     ))}
+
+                    {/* Gradient Fill under line */}
+                    {points.length > 1 && (
+                      <path
+                        d={gradientPath}
+                        fill="url(#chart-gradient)"
+                      />
+                    )}
+
+                    {/* Main Blue Line path */}
+                    {points.length > 1 && (
+                      <path
+                        d={linePath}
+                        fill="none"
+                        stroke="#3b82f6"
+                        strokeWidth="3.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    )}
+
+                    {/* Node points (white circles with green/red stroke) */}
+                    {points.map((p, idx) => (
+                      <circle
+                        key={idx}
+                        cx={p.x}
+                        cy={p.y}
+                        r="6"
+                        fill="white"
+                        stroke={p.val >= 0 ? '#10b981' : '#ef4444'}
+                        strokeWidth="3.5"
+                      />
+                    ))}
+
+                    {/* Tooltip balloons */}
+                    {points.map((p, idx) => {
+                      const x0 = p.x;
+                      const y0 = p.y - 15 - 12; // Position above the node
+                      const left = x0 - 36;
+                      const right = x0 + 36;
+                      const top = y0 - 13;
+                      const bottom = y0 + 13;
+                      const balloonPath = `M ${left + 6} ${top} L ${right - 6} ${top} A 6 6 0 0 1 ${right} ${top + 6} L ${right} ${bottom - 6} A 6 6 0 0 1 ${right - 6} ${bottom} L ${x0 + 5} ${bottom} L ${x0} ${bottom + 6} L ${x0 - 5} ${bottom} L ${left + 6} ${bottom} A 6 6 0 0 1 ${left} ${bottom - 6} L ${left} ${top + 6} A 6 6 0 0 1 ${left + 6} ${top} Z`;
+
+                      return (
+                        <g key={idx}>
+                          <path
+                            d={balloonPath}
+                            fill="white"
+                            stroke={p.val >= 0 ? '#bbf7d0' : '#fecaca'}
+                            strokeWidth="1.5"
+                            filter="url(#shadow)"
+                          />
+                          <text
+                            x={x0}
+                            y={y0 + 4}
+                            fontSize="12"
+                            textAnchor="middle"
+                            fontFamily="var(--font-anuphan)"
+                          >
+                            <tspan fill={p.val >= 0 ? '#10b981' : '#ef4444'} fontWeight="bold">
+                              {p.val >= 0 ? `+${p.val}` : p.val}
+                            </tspan>
+                            <tspan fill="#64748b" fontSize="10" fontWeight="500" dx="3">
+                              mL
+                            </tspan>
+                          </text>
+                        </g>
+                      );
+                    })}
                   </svg>
+                  
                   <div className={styles.chartLegends}>
                     <span className={styles.legendPos}>+ ดึงน้ำส่วนเกินสำเร็จ</span>
                     <span className={styles.legendNeg}>- น้ำคั่งสะสมในช่องท้อง</span>
