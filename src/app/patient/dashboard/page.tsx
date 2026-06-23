@@ -346,22 +346,29 @@ export default function PatientDashboard() {
 
     <div className={styles.container}>
       {/* Navigation Header */}
-      <header className={`${styles.header} glass`}>
+      <header className={`${styles.header} patientHeader glass`}>
         <div className={styles.headerLeft}>
-          <div className={styles.logo}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
-              <path d="M12 8v8M8 12h8" stroke="currentColor" strokeWidth="2"/>
-            </svg>
-            <span>NephroLog (สำหรับคนไข้)</span>
+          <div className={styles.logoCircleWrapper}>
+            <div className={styles.logoCircle}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1875FF" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </div>
+            <div className={styles.sparkle1}>✦</div>
+            <div className={styles.sparkle2}>✦</div>
+          </div>
+          <div className={styles.logoTexts}>
+            <span className={styles.logoTitle}>NephroLog</span>
+            <span className={styles.logoSubtitle}>สำหรับคนไข้</span>
           </div>
         </div>
-        <button onClick={handleLogout} className={`${styles.logoutBtn} btn btn-secondary`}>
+        <div className={styles.dotsGrid}></div>
+        <button onClick={handleLogout} className={styles.logoutBtn}>
           ออกจากระบบ
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-            <polyline points="16 17 21 12 16 7"></polyline>
-            <line x1="21" y1="12" x2="9" y2="12"></line>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
           </svg>
         </button>
       </header>

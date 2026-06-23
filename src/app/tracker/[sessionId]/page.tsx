@@ -529,7 +529,7 @@ export default function TrackerPage() {
   return (
     <div className={styles.container}>
       {/* Mini Header */}
-      <header className={`${styles.header} glass`}>
+      <header className={`${styles.header} patientHeader glass`}>
         <button onClick={() => router.push('/')} className={styles.backBtn}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
           แดชบอร์ด

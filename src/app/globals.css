@@ -288,7 +288,7 @@ label {
 }
 
 /* Global Navigation Header Styling (KU Green Theme) */
-header {
+header:not(.patientHeader) {
   background-color: #35A969 !important;
   color: #ffffff !important;
   backdrop-filter: none !important;
@@ -296,54 +296,54 @@ header {
   border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
 }
 
-header * {
+header:not(.patientHeader) * {
   color: #ffffff !important;
 }
 
-header svg {
+header:not(.patientHeader) svg {
   color: #ffffff !important;
 }
 
-header button, header a {
+header:not(.patientHeader) button, header:not(.patientHeader) a {
   color: #ffffff !important;
 }
 
-header button:hover, header a:hover {
+header:not(.patientHeader) button:hover, header:not(.patientHeader) a:hover {
   background-color: rgba(255, 255, 255, 0.15) !important;
   color: #ffffff !important;
 }
 
 /* Specific styling for buttons inside header (e.g. backBtn, logoutBtn) */
-header button[class*="backBtn"] {
+header:not(.patientHeader) button[class*="backBtn"] {
   color: #ffffff !important;
 }
-header button[class*="backBtn"]:hover {
+header:not(.patientHeader) button[class*="backBtn"]:hover {
   background-color: rgba(255, 255, 255, 0.15) !important;
   color: #ffffff !important;
 }
 
-header button[class*="logoutBtn"] {
+header:not(.patientHeader) button[class*="logoutBtn"] {
   background-color: rgba(255, 255, 255, 0.15) !important;
   color: #ffffff !important;
   border: 1px solid rgba(255, 255, 255, 0.25) !important;
 }
-header button[class*="logoutBtn"]:hover {
+header:not(.patientHeader) button[class*="logoutBtn"]:hover {
   background-color: rgba(255, 255, 255, 0.25) !important;
 }
 
 /* Fix visibility of danger button in header */
-header button.btn-danger, header button[class*="btn-danger"] {
+header:not(.patientHeader) button.btn-danger, header:not(.patientHeader) button[class*="btn-danger"] {
   background-color: #ef4444 !important;
   color: #ffffff !important;
   border: 1px solid #dc2626 !important;
 }
-header button.btn-danger:hover, header button[class*="btn-danger"]:hover {
+header:not(.patientHeader) button.btn-danger:hover, header:not(.patientHeader) button[class*="btn-danger"]:hover {
   background-color: #dc2626 !important;
   color: #ffffff !important;
 }
 
 /* Fix badges visibility in header (glassmorphism style pills) */
-header [class*="patientHn"], header [class*="cycleBadge"], header [class*="hnLabel"], header [class*="hnBadge"] {
+header:not(.patientHeader) [class*="patientHn"], header:not(.patientHeader) [class*="cycleBadge"], header:not(.patientHeader) [class*="hnLabel"], header:not(.patientHeader) [class*="hnBadge"] {
   background-color: rgba(255, 255, 255, 0.2) !important;
   color: #ffffff !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;

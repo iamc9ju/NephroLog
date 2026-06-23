@@ -16,47 +16,162 @@
 }
 
 .header {
-  width: 100%;
+  margin: 20px 24px 0 24px;
+  background: linear-gradient(135deg, var(--surface) 0%, var(--primary-light) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(228, 228, 231, 0.6);
+  border-radius: 24px;
+  padding: 16px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
-  min-height: 64px;
-  border-bottom: 1px solid var(--surface-border);
-  gap: 8px;
-  flex-wrap: wrap;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.03), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+  position: relative;
+  overflow: hidden;
+  gap: 12px;
 }
 
 .headerLeft {
   display: flex;
   align-items: center;
+  gap: 16px;
   min-width: 0;
+  z-index: 1;
 }
 
-.logo {
+.logoCircleWrapper {
+  position: relative;
+  width: 54px;
+  height: 54px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 17px;
+  justify-content: center;
   flex-shrink: 0;
 }
 
-.logo img {
-  width: 44px;
-  height: 44px;
-  object-fit: contain;
+.logoCircleWrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.15);
-  flex-shrink: 0;
+  border: 1px solid rgba(24, 117, 255, 0.15);
+  background-color: rgba(24, 117, 255, 0.03);
+}
+
+.logoCircleWrapper::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border-radius: 50%;
+  border: 1px dashed rgba(24, 117, 255, 0.25);
+}
+
+.logoCircle {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 1px solid rgba(24, 117, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(24, 117, 255, 0.08);
+  z-index: 2;
+}
+
+.sparkle1 {
+  position: absolute;
+  top: 2px;
+  right: -2px;
+  color: #93c5fd;
+  font-size: 11px;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+.sparkle2 {
+  position: absolute;
+  bottom: 4px;
+  left: -2px;
+  color: #93c5fd;
+  font-size: 9px;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.logoTexts {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.logoTitle {
+  font-size: 20px;
+  font-weight: 800;
+  color: #1e3a8a;
+  font-family: var(--font-family);
+  line-height: 1.1;
+}
+
+.logoSubtitle {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.dotsGrid {
+  position: absolute;
+  left: 55%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 32px;
+  opacity: 0.12;
+  background-image: radial-gradient(#64748b 1.2px, transparent 1.2px);
+  background-size: 8px 8px;
+  pointer-events: none;
 }
 
 .logoutBtn {
-  font-size: 14px;
-  padding: 6px 12px;
-  gap: 6px;
+  background-color: var(--primary) !important;
+  color: #ffffff !important;
+  border-radius: 9999px !important;
+  border: none !important;
+  padding: 10px 22px !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(24, 117, 255, 0.15);
+  min-height: auto;
+  height: auto;
+  z-index: 1;
   flex-shrink: 0;
+}
+
+.logoutBtn:hover {
+  background-color: var(--primary-hover) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(24, 117, 255, 0.25);
+}
+
+.logoutBtn svg {
+  color: #ffffff !important;
+  transition: transform 0.2s ease;
+}
+
+.logoutBtn:hover svg {
+  transform: translateX(3px);
 }
 
 .main {
