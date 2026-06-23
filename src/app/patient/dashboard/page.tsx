@@ -77,6 +77,24 @@ export default function PatientDashboard() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [drainColorFilter, setDrainColorFilter] = useState('all');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [language, setLanguage] = useState<'TH' | 'EN'>('TH');
+  const menuRef = React.useRef<HTMLDivElement>(null);
+
+  // Close dropdown menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+    if (isMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMenuOpen]);
 
   // Load avatar from localStorage when patient state is set
   useEffect(() => {
@@ -346,31 +364,122 @@ export default function PatientDashboard() {
 
     <div className={styles.container}>
       {/* Navigation Header */}
-      <header className={`${styles.header} patientHeader glass`}>
+      <header className={`${styles.header} ${isMenuOpen ? styles.headerMenuOpen : ''} patientHeader glass`} ref={menuRef}>
         <div className={styles.headerLeft}>
-          <div className={styles.logoCircleWrapper}>
-            <div className={styles.logoCircle}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1875FF" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
-            </div>
-            <div className={styles.sparkle1}>✦</div>
-            <div className={styles.sparkle2}>✦</div>
-          </div>
-          <div className={styles.logoTexts}>
-            <span className={styles.logoTitle}>NephroLog</span>
-            <span className={styles.logoSubtitle}>สำหรับคนไข้</span>
-          </div>
+          <img src="/logo-login.png" alt="FurrR" className={styles.logoImg} />
         </div>
-        <div className={styles.dotsGrid}></div>
-        <button onClick={handleLogout} className={styles.logoutBtn}>
-          ออกจากระบบ
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </button>
+        <div className={styles.menuWrapper}>
+          <button 
+            onClick={() => setIsMenuOpen(!isMenuOpen)} 
+            className={`${isMenuOpen ? styles.menuToggleBtnActive : styles.menuToggleBtn}`}
+            title="เมนูการใช้งาน"
+          >
+            {isMenuOpen ? (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1875FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            ) : (
+              <div className={styles.twoLinesMenu}>
+                <span className={styles.menuLine1}></span>
+                <span className={styles.menuLine2}></span>
+              </div>
+            )}
+          </button>
+        </div>
+        
+        {isMenuOpen && (
+          <div className={styles.dropdownMenuExpanded}>
+            <button onClick={() => { router.push('/'); setIsMenuOpen(false); }} className={styles.expandedDropdownItem}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className={styles.expandedItemIcon}>
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+              </svg>
+              <span className={styles.expandedItemText}>หน้าแรก</span>
+            </button>
+            
+            <button onClick={() => { alert('ฟังก์ชันสมัครสมาชิกกำลังอยู่ระหว่างการพัฒนา'); setIsMenuOpen(false); }} className={styles.expandedDropdownItem}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className={styles.expandedItemIcon}>
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+              </svg>
+              <span className={styles.expandedItemText}>สมัครสมาชิก</span>
+            </button>
+            
+            <button onClick={() => { alert('ฟังก์ชันดาวน์โหลดกำลังอยู่ระหว่างการพัฒนา'); setIsMenuOpen(false); }} className={styles.expandedDropdownItem}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={styles.expandedItemIcon}>
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span className={styles.expandedItemText}>ดาวน์โหลด</span>
+            </button>
+            
+            <button onClick={() => alert('ฟังก์ชันเนื้อหากำลังอยู่ระหว่างการพัฒนา')} className={styles.expandedDropdownItem}>
+              <div className={styles.expandedItemLeft}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={styles.expandedItemIcon}>
+                  <line x1="3" y1="12" x2="21" y2="12"></line>
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+                <span className={styles.expandedItemText}>เนื้อหา</span>
+              </div>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={styles.expandedItemChevron}>
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            
+            <button onClick={() => alert('ฟังก์ชันข้อมูลสนับสนุนกำลังอยู่ระหว่างการพัฒนา')} className={styles.expandedDropdownItem}>
+              <div className={styles.expandedItemLeft}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={styles.expandedItemIcon}>
+                  <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                  <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path>
+                </svg>
+                <span className={styles.expandedItemText}>ข้อมูลสนับสนุน</span>
+              </div>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={styles.expandedItemChevron}>
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            
+            <div className={styles.expandedDivider}></div>
+            
+            <div className={styles.langSelectorRow}>
+              <div className={styles.langSelector}>
+                <button 
+                  type="button"
+                  onClick={() => setLanguage('TH')}
+                  className={`${styles.langPill} ${language === 'TH' ? styles.langPillActive : ''}`}
+                >
+                  TH
+                </button>
+                <button 
+                  type="button"
+                  onClick={() => setLanguage('EN')}
+                  className={`${styles.langPill} ${language === 'EN' ? styles.langPillActive : ''}`}
+                >
+                  EN
+                </button>
+              </div>
+            </div>
+            
+            <button 
+              onClick={() => { router.push('/patient/dashboard'); setIsMenuOpen(false); }} 
+              className={styles.expandedDashboardBtn}
+            >
+              <span className={styles.lockIcon}>🔓</span>
+              <span>{patient?.hn || 'chxcmj3'} — แดชบอร์ด</span>
+            </button>
+            
+            <button onClick={handleLogout} className={styles.expandedLogoutBtn}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={styles.logoutBtnIcon}>
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                <polyline points="16 17 21 12 16 7"></polyline>
+                <line x1="21" y1="12" x2="9" y2="12"></line>
+              </svg>
+              <span>ออกจากระบบ</span>
+            </button>
+          </div>
+        )}
       </header>
 
       <main className={styles.main}>
