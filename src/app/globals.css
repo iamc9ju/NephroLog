@@ -1,9 +1,9 @@
 :root {
   /* Clean Minimal Monochrome Theme (Inspired by blocks/shadcn UIs) */
-  --primary: #09090b; /* Zinc 950 (Black) */
-  --primary-hover: #27272a; /* Zinc 800 */
-  --primary-light: #f4f4f5; /* Zinc 100 */
-  --primary-dark: #09090b;
+  --primary: #1875FF; /* Blue */
+  --primary-hover: #005ae6; /* Hover Blue */
+  --primary-light: #e8f1ff; /* Light Blue */
+  --primary-dark: #003db3;
   
   --secondary: #09090b;
   --secondary-hover: #27272a;
@@ -48,11 +48,11 @@
     --text-secondary: #a1a1aa;
     --text-muted: #52525b;
     
-    --primary-light: #27272a;
+    --primary-light: rgba(24, 117, 255, 0.15);
     --secondary-light: #27272a;
     
-    --primary: #ffffff;
-    --primary-hover: #e4e4e7;
+    --primary: #3b82f6;
+    --primary-hover: #60a5fa;
     --secondary: #ffffff;
     --secondary-hover: #e4e4e7;
     

@@ -312,7 +312,7 @@ export default function NurseDashboard() {
             <form onSubmit={handleRegisterPatient} className={styles.modalForm}>
               <div className={styles.modalFormGrid}>
                 <div className={styles.formGroup}>
-                  <label htmlFor="modalHn">HN (เลขประจำตัวผู้ป่วย)*</label>
+                  <label htmlFor="modalHn">HN*</label>
                   <input
                     id="modalHn"
                     type="text"
