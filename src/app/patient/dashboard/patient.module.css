@@ -41,10 +41,15 @@
   box-shadow: none !important;
 }
 
-.logoImg {
-  height: 36px;
-  width: auto;
-  object-fit: contain;
+.logoTitle {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1e3a8a;
+  font-family: var(--font-family);
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
   display: block;
 }
 
@@ -135,7 +140,8 @@
   padding: 12px 14px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 12px;
   background: transparent;
   border: none;
   border-radius: 12px;
