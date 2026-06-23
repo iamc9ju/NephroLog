@@ -16,42 +16,10 @@
   color: var(--text-secondary);
 }
 
-.header {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 24px;
-  min-height: 64px;
-  border-bottom: 1px solid var(--surface-border);
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.backBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  border: none;
-  background: transparent;
-  color: var(--text-secondary);
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  padding: 8px 12px;
-  border-radius: var(--radius-md);
-  transition: var(--transition);
-  flex-shrink: 0;
-}
-
-.backBtn:hover {
-  background-color: var(--surface-border);
-  color: var(--text-primary);
-}
-
 .main {
   flex: 1;
   padding: 24px;
+  padding-top: 96px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -432,6 +400,7 @@
   }
   .main {
     padding: 16px;
+    padding-top: 104px;
     gap: 16px;
   }
   .profileCard {

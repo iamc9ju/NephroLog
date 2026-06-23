@@ -1,0 +1,273 @@
+/* src/components/Navbar.module.css */
+
+.header {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  z-index: 1000;
+  height: 72px;
+  box-sizing: border-box;
+  border-radius: 28px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.03), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+  transition: border-radius 0.2s ease, box-shadow 0.2s ease;
+  overflow: visible;
+  gap: 12px;
+  background: linear-gradient(135deg, var(--surface) 0%, var(--primary-light) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(228, 228, 231, 0.6);
+}
+
+.headerMenuOpen {
+  border-radius: 28px 28px 0 0 !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  z-index: 1;
+}
+
+.logoImg {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+  margin-right: 2px;
+  margin-left: -6px;
+  flex-shrink: 0;
+}
+
+.logoTitle {
+  font-size: 24px;
+  font-weight: 800;
+  font-family: var(--font-family);
+  letter-spacing: -0.5px;
+  display: block;
+  color: #000000;
+}
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: transparent;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.backBtn:hover {
+  background-color: var(--primary-light);
+  color: var(--primary-hover);
+}
+
+.menuWrapper {
+  position: relative;
+  display: inline-block;
+  z-index: 101;
+}
+
+.menuToggleBtn {
+  background-color: #ffffff;
+  border: 1px solid rgba(228, 228, 231, 0.8);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  outline: none;
+  box-shadow: 0 4px 12px rgba(24, 117, 255, 0.08);
+}
+
+.menuToggleBtn:hover {
+  background-color: #f8fafc;
+  transform: scale(1.03);
+}
+
+.menuToggleBtnActive {
+  background-color: #eff6ff;
+  border: 1.5px solid #1875FF;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.threeLinesMenu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3.5px;
+}
+
+.menuLine {
+  width: 16px;
+  height: 2px;
+  background-color: #1875FF;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+
+.dropdownMenuExpanded {
+  position: absolute;
+  top: 100%;
+  left: -1px;
+  right: -1px;
+  background-color: var(--surface);
+  border: 1px solid rgba(228, 228, 231, 0.6);
+  border-top: none;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.06);
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: slideDownFade 0.2s ease-out forwards;
+  z-index: 1000;
+}
+
+@keyframes slideDownFade {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.expandedDropdownItem {
+  width: 100%;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: left;
+  min-height: auto;
+  height: auto;
+  outline: none;
+}
+
+.expandedDropdownItem:hover {
+  background-color: #f8fafc;
+}
+
+.expandedItemIcon {
+  color: #334155;
+  flex-shrink: 0;
+}
+
+.expandedDropdownItem svg.expandedItemIcon {
+  margin-right: 12px;
+}
+
+.expandedItemText {
+  color: #1e293b;
+}
+
+.expandedDivider {
+  height: 1px;
+  background-color: #f1f5f9;
+  margin: 6px 0;
+}
+
+.expandedDashboardBtn {
+  width: 100%;
+  background-color: #3b82f6;
+  color: #ffffff;
+  border: none;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+  min-height: auto;
+  height: auto;
+  outline: none;
+  margin-top: 4px;
+}
+
+.expandedDashboardBtn:hover {
+  background-color: #2563eb;
+}
+
+.lockIcon {
+  font-size: 16px;
+}
+
+.expandedLogoutBtn {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  font-weight: 700;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+  min-height: auto;
+  height: auto;
+  outline: none;
+  margin-top: 4px;
+}
+
+.expandedLogoutBtn:hover {
+  opacity: 0.85;
+}
+
+.logoutBtnIcon {
+  color: #ef4444;
+}
+
+/* ─── RESPONSIVE OVERRIDES ─── */
+@media (max-width: 768px) {
+  .header {
+    padding: 10px 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .logoTitle {
+    font-size: 18px;
+  }
+}

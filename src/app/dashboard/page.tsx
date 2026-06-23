@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './dashboard.module.css';
+import Navbar from '@/components/Navbar';
 
 interface Patient {
   id: string;
@@ -165,27 +166,12 @@ export default function NurseDashboard() {
 
   return (
     <div className={styles.container}>
-      {/* Navigation Header */}
-      <header className={`${styles.header} glass`}>
-        <div className={styles.headerLeft}>
-          <div className={styles.logo}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" fill="currentColor"/>
-            </svg>
-            <span>NephroLog</span>
-          </div>
-          <span className={styles.divider}>|</span>
-          <span className={styles.nurseIdentity}>พยาบาลผู้บันทึก: <strong>{nurseName}</strong></span>
-        </div>
-        <button onClick={handleLogout} className={`${styles.logoutBtn} btn btn-secondary`}>
-          ออกจากระบบ
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-            <polyline points="16 17 21 12 16 7"></polyline>
-            <line x1="21" y1="12" x2="9" y2="12"></line>
-          </svg>
-        </button>
-      </header>
+      <Navbar
+        role="nurse"
+        pageType="dashboard"
+        nurseName={nurseName}
+        onLogout={handleLogout}
+      />
 
       {/* Main Content Layout */}
       <main className={styles.main}>

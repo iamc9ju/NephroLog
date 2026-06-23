@@ -5,69 +5,10 @@
   flex-direction: column;
 }
 
-.header {
-  height: 64px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 24px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  border-bottom: 1px solid var(--surface-border);
-  box-shadow: var(--shadow-sm);
-}
-
-.headerLeft {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 0;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 17px;
-  flex-shrink: 0;
-}
-
-.logo img {
-  width: 44px;
-  height: 44px;
-  object-fit: contain;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.15);
-  flex-shrink: 0;
-}
-
-.divider {
-  color: var(--surface-border);
-  flex-shrink: 0;
-}
-
-.nurseIdentity {
-  font-size: 14px;
-  color: var(--text-secondary);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.logoutBtn {
-  font-size: 14px;
-  padding: 6px 12px;
-  gap: 6px;
-  flex-shrink: 0;
-}
-
 .main {
   flex: 1;
   padding: 24px;
+  padding-top: 96px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -502,6 +443,7 @@
   }
   .main {
     padding: 16px;
+    padding-top: 104px;
     gap: 16px;
   }
   .statsGrid {

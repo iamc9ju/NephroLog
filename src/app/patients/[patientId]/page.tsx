@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import styles from './patientDetail.module.css';
 import ConfirmDialog from '@/components/ConfirmDialog';
+import Navbar from '@/components/Navbar';
 
 interface Patient {
   id: string;
@@ -211,12 +212,10 @@ export default function PatientDetailPage() {
   return (
 
     <div className={styles.container}>
-      <header className={`${styles.header} glass`}>
-        <button onClick={() => router.push('/dashboard')} className={styles.backBtn}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
-          กลับไปแดชบอร์ด
-        </button>
-      </header>
+      <Navbar
+        role="nurse"
+        pageType="patientDetail"
+      />
 
       <main className={styles.main}>
         {/* Profile Details */}
