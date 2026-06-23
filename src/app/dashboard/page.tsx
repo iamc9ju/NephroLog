@@ -212,8 +212,8 @@ export default function NurseDashboard() {
             </div>
           </div>
           <div className={`${styles.statCard} card`}>
-            <div className={styles.statIcon} style={{ backgroundColor: 'var(--success-light)', color: 'var(--success)' }}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            <div className={styles.statIcon} style={{ backgroundColor: 'transparent', padding: 0 }}>
+              <img src="/logo-uf.png" alt="โลโก้ Net UF" width="52" height="52" style={{ objectFit: 'contain', borderRadius: '50%' }} />
             </div>
             <div className={styles.statInfo}>
               <h3>ค่าเฉลี่ย Net UF วันนี้</h3>

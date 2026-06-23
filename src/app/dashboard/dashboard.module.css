@@ -245,25 +245,22 @@
   font-weight: 600;
   font-size: 14px;
   padding: 14px 18px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--surface-border);
 }
 
 @media (prefers-color-scheme: dark) {
   .table th {
     background-color: #75C4D9 !important;
     color: #0f172a !important;
+    border: 1px solid var(--surface-border);
   }
 }
 
 .table td {
   padding: 14px 18px;
-  border-bottom: 1px solid var(--surface-border);
+  border: 1px solid var(--surface-border);
   font-size: 14px;
   color: var(--text-secondary);
-}
-
-.table tr:last-child td {
-  border-bottom: none;
 }
 
 .table tbody tr:hover {
