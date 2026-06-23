@@ -55,22 +55,18 @@
 }
 
 .logoIcon {
-  width: 56px;
-  height: 56px;
-  background-color: var(--primary-light);
-  color: var(--primary);
-  border-radius: var(--radius-md);
+  width: 80px;
+  height: 80px;
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 16px auto;
-  box-shadow: var(--shadow-sm);
 }
 
 @media (prefers-color-scheme: dark) {
   .logoIcon {
-    background-color: rgba(13, 148, 136, 0.2);
-    color: #2dd4bf;
+    background-color: transparent;
   }
 }
 

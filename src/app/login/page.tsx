@@ -97,9 +97,7 @@ export default function LoginPage() {
       <div className={`${styles.loginCard} glass fade-in`}>
         <div className={styles.header}>
           <div className={styles.logoIcon}>
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z" fill="currentColor"/>
-            </svg>
+            <img src="/logo-login.png" alt="โลโก้บันทึกฟอกไต" width="80" height="80" style={{ objectFit: 'contain', borderRadius: '12px' }} />
           </div>
           <h2>ระบบบันทึกการฟอกไตทางช่องท้อง</h2>
           <p>Continuous Ambulatory Peritoneal Dialysis (CAPD)</p>
