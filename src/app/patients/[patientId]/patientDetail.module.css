@@ -17,13 +17,15 @@
 }
 
 .header {
-  height: 64px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 32px;
+  padding: 0 24px;
+  min-height: 64px;
   border-bottom: 1px solid var(--surface-border);
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .backBtn {
@@ -39,6 +41,7 @@
   padding: 8px 12px;
   border-radius: var(--radius-md);
   transition: var(--transition);
+  flex-shrink: 0;
 }
 
 .backBtn:hover {
@@ -48,10 +51,10 @@
 
 .main {
   flex: 1;
-  padding: 32px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 24px;
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
@@ -74,10 +77,12 @@
   justify-content: center;
   font-size: 24px;
   font-weight: 700;
+  flex-shrink: 0;
 }
 
 .info {
   flex: 1;
+  min-width: 0;
 }
 
 .nameHeader {
@@ -85,6 +90,7 @@
   align-items: center;
   gap: 12px;
   margin-bottom: 8px;
+  flex-wrap: wrap;
 }
 
 .nameHeader h2 {
@@ -105,7 +111,7 @@
 
 .metaGrid {
   display: flex;
-  gap: 32px;
+  gap: 24px;
   flex-wrap: wrap;
 }
 
@@ -128,13 +134,7 @@
 .statsGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-
-@media (max-width: 640px) {
-  .statsGrid {
-    grid-template-columns: 1fr;
-  }
+  gap: 16px;
 }
 
 .statCard {
@@ -181,17 +181,19 @@
   margin: 0;
 }
 
+/* ─── Responsive Table ─── */
 .tableContainer {
   background-color: var(--surface);
   border: 1px solid var(--surface-border);
   border-radius: var(--radius-lg);
   overflow-x: auto;
   box-shadow: var(--shadow-sm);
+  -webkit-overflow-scrolling: touch;
 }
 
 .table {
   width: 100%;
-  min-width: 900px;
+  min-width: 700px;
   border-collapse: collapse;
   text-align: left;
 }
@@ -202,7 +204,8 @@
   font-weight: 600;
   font-size: 13px;
   padding: 12px 16px;
-  border-bottom: 1px solid var(--surface-border);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  white-space: nowrap;
 }
 
 .table td {
@@ -222,6 +225,7 @@
 
 .dateCell {
   color: var(--text-primary);
+  white-space: nowrap;
 }
 
 .centerText {
@@ -231,10 +235,11 @@
 .netUfText {
   font-family: var(--font-outfit);
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .symptomsCell {
-  max-width: 200px;
+  max-width: 180px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -252,27 +257,6 @@
   color: var(--text-secondary);
   margin-top: 4px;
   font-weight: normal;
-}
-
-@media (max-width: 640px) {
-  .profileCard {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 24px 16px;
-    gap: 16px;
-  }
-  .metaGrid {
-    justify-content: center;
-    gap: 16px 24px;
-  }
-  .header {
-    padding: 0 16px;
-  }
-  .main {
-    padding: 16px;
-    gap: 20px;
-  }
 }
 
 /* Filters & Search */
@@ -299,7 +283,7 @@
 .searchBox {
   position: relative;
   flex: 1;
-  min-width: 260px;
+  min-width: 200px;
   display: flex;
   align-items: center;
 }
@@ -348,8 +332,8 @@
 
 .filterGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
   border-top: 1px solid var(--surface-border);
   padding-top: 14px;
 }
@@ -390,11 +374,12 @@
   gap: 6px;
   margin-top: 24px;
   padding: 12px 0;
+  flex-wrap: wrap;
 }
 
 .pageBtn {
-  min-width: 32px;
-  height: 32px;
+  min-width: 36px;
+  height: 36px;
   padding: 0 8px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--surface-border);
@@ -407,6 +392,7 @@
   justify-content: center;
   cursor: pointer;
   transition: var(--transition);
+  touch-action: manipulation;
 }
 
 .pageBtn:hover:not(:disabled) {
@@ -431,26 +417,95 @@
   padding: 0 4px;
 }
 
-/* Responsive View Handling - Reverted to Standard Table Layout */
+/* Print only */
 .printOnlyView {
   display: none;
 }
 
+/* ─── RESPONSIVE BREAKPOINTS ─── */
+
+/* Tablet: ≤768px */
+@media (max-width: 768px) {
+  .header {
+    padding: 12px 16px;
+    min-height: auto;
+  }
+  .main {
+    padding: 16px;
+    gap: 16px;
+  }
+  .profileCard {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px 16px;
+    gap: 12px;
+  }
+  .metaGrid {
+    justify-content: center;
+    gap: 12px 20px;
+  }
+  .nameHeader {
+    justify-content: center;
+  }
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .statCard {
+    padding: 16px;
+  }
+}
+
+/* Mobile: ≤480px */
+@media (max-width: 480px) {
+  .filterGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .filterRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .searchBox {
+    min-width: 0;
+    width: 100%;
+  }
+  .pagination {
+    gap: 4px;
+  }
+  .pageBtn {
+    min-width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+}
+
+/* Very small phones: ≤360px */
+@media (max-width: 360px) {
+  .filterGrid {
+    grid-template-columns: 1fr;
+  }
+  .nameHeader h2 {
+    font-size: 17px;
+  }
+  .statVal {
+    font-size: 22px;
+  }
+}
+
+/* Print */
 @media print {
-  /* Reset margins for printing */
   @page {
     margin: 1.5cm;
     size: A4 portrait;
   }
 
-  /* Override background and text colors for print */
   body, .container {
     background: #ffffff !important;
     color: #000000 !important;
     font-family: sans-serif !important;
   }
 
-  /* Hide screen-only components */
   .header,
   .backBtn,
   .profileCard,
@@ -462,7 +517,6 @@
     display: none !important;
   }
 
-  /* Adjust main container spacing for print */
   .main {
     padding: 0 !important;
     margin: 0 !important;
@@ -480,7 +534,6 @@
     display: none !important;
   }
 
-  /* Show and style the print-only view */
   .printOnlyView {
     display: block !important;
     width: 100% !important;
@@ -540,7 +593,3 @@
     page-break-inside: avoid;
   }
 }
-
-
-
-

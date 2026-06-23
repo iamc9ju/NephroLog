@@ -12,44 +12,59 @@
   justify-content: center;
   font-size: 16px;
   color: var(--text-secondary);
+  padding: 24px;
 }
 
 .header {
-  height: 64px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 32px;
+  padding: 0 24px;
+  min-height: 64px;
   border-bottom: 1px solid var(--surface-border);
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .headerLeft {
   display: flex;
   align-items: center;
+  min-width: 0;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: var(--primary);
+  gap: 10px;
+  color: #ffffff;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+
+.logo img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.15);
+  flex-shrink: 0;
 }
 
 .logoutBtn {
   font-size: 14px;
   padding: 6px 12px;
   gap: 6px;
+  flex-shrink: 0;
 }
 
 .main {
   flex: 1;
-  padding: 32px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 24px;
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
@@ -58,21 +73,27 @@
 .profileCard {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
   background: linear-gradient(135deg, var(--surface) 0%, rgba(13, 148, 136, 0.03) 100%);
 }
 
 .profileAvatar {
-  width: 64px;
-  height: 64px;
+  width: 60px;
+  height: 60px;
   border-radius: var(--radius-full);
   background-color: var(--primary);
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 700;
+  flex-shrink: 0;
+}
+
+.profileInfo {
+  flex: 1;
+  min-width: 0;
 }
 
 .profileInfo h2 {
@@ -84,7 +105,7 @@
 
 .profileMetaGrid {
   display: flex;
-  gap: 32px;
+  gap: 24px;
   flex-wrap: wrap;
 }
 
@@ -101,21 +122,80 @@
 }
 
 .metaItem strong {
-  font-size: 16px;
+  font-size: 15px;
   color: var(--text-primary);
   font-family: var(--font-outfit), var(--font-family);
 }
 
+/* Stats KPI */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 8px;
+}
+
+.statsCard {
+  background-color: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.statsCard:hover {
+  transform: translateY(-2px);
+  border-color: var(--text-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.statsIcon {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background-color: var(--background);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.statsData {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.statsLabel {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.statsValue {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: var(--font-outfit);
+}
+
+.textSuccess { color: var(--success) !important; }
+.textDanger  { color: var(--danger)  !important; }
+
+/* Dashboard Split */
 .dashboardSplit {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
-  gap: 32px;
-}
-
-@media (max-width: 900px) {
-  .dashboardSplit {
-    grid-template-columns: 1fr;
-  }
+  gap: 24px;
 }
 
 .chartPanelSection, .historySection {
@@ -131,8 +211,8 @@
 }
 
 .chartCard {
-  padding: 24px;
-  min-height: 240px;
+  padding: 20px;
+  min-height: 220px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -153,14 +233,17 @@
 
 .svgChart {
   overflow: visible;
+  width: 100%;
+  height: auto;
 }
 
 .chartLegends {
   display: flex;
   justify-content: center;
-  gap: 24px;
+  gap: 20px;
   font-size: 12px;
   font-weight: 600;
+  flex-wrap: wrap;
 }
 
 .legendPos {
@@ -169,7 +252,6 @@
   align-items: center;
   gap: 6px;
 }
-
 .legendPos::before {
   content: '';
   display: inline-block;
@@ -185,7 +267,6 @@
   align-items: center;
   gap: 6px;
 }
-
 .legendNeg::before {
   content: '';
   display: inline-block;
@@ -195,14 +276,15 @@
   background-color: var(--danger);
 }
 
-/* History Card */
+/* History list */
 .historyList {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   max-height: 600px;
   overflow-y: auto;
-  padding-right: 8px;
+  padding-right: 4px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .emptyHistory {
@@ -212,10 +294,10 @@
 }
 
 .historyCard {
-  padding: 20px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   transition: var(--transition);
 }
 
@@ -229,6 +311,8 @@
   align-items: flex-start;
   border-bottom: 1px solid var(--surface-border);
   padding-bottom: 12px;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .historyCardHeader h3 {
@@ -240,14 +324,16 @@
 .dateText {
   font-size: 12px;
   color: var(--text-muted);
+  white-space: nowrap;
 }
 
 .netUfTag {
-  padding: 6px 12px;
+  padding: 5px 10px;
   border-radius: var(--radius-sm);
   font-size: 14px;
   font-weight: 700;
   font-family: var(--font-outfit);
+  flex-shrink: 0;
 }
 
 .ufPos {
@@ -269,13 +355,7 @@
 .bodyGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-@media (max-width: 480px) {
-  .bodyGrid {
-    grid-template-columns: 1fr;
-  }
+  gap: 10px;
 }
 
 .bodyGrid div {
@@ -322,119 +402,16 @@
   display: block;
 }
 
-@media (max-width: 640px) {
-  .profileCard {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 24px 16px;
-    gap: 16px;
-  }
-  .profileMetaGrid {
-    justify-content: center;
-    gap: 16px 24px;
-  }
-  .header {
-    padding: 0 16px;
-  }
-  .main {
-    padding: 16px;
-    gap: 20px;
-  }
-  .chartCard {
-    padding: 16px 8px;
-  }
-  .profileAction {
-    width: 100%;
-  }
-  .profileAction button {
-    width: 100%;
-  }
-}
-
-/* Stats KPI Grid */
-.statsGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-bottom: 24px;
-}
-
-@media (max-width: 640px) {
-  .statsGrid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-}
-
-.statsCard {
-  background-color: var(--surface);
-  border: 1px solid var(--surface-border);
-  border-radius: var(--radius-md);
-  padding: 16px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition);
-}
-
-.statsCard:hover {
-  transform: translateY(-2px);
-  border-color: var(--text-primary);
-  box-shadow: var(--shadow-md);
-}
-
-.statsIcon {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-sm);
-  background-color: var(--background);
-  color: var(--text-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.statsData {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.statsLabel {
-  font-size: 11px;
-  color: var(--text-secondary);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.statsValue {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--text-primary);
-  font-family: var(--font-outfit);
-}
-
-.textSuccess {
-  color: var(--success) !important;
-}
-
-.textDanger {
-  color: var(--danger) !important;
-}
-
-/* Filters & Search */
+/* Filters */
 .filterSection {
   background-color: var(--surface);
   border: 1px solid var(--surface-border);
   border-radius: var(--radius-md);
-  padding: 18px;
-  margin-bottom: 24px;
+  padding: 16px;
+  margin-bottom: 8px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   box-shadow: var(--shadow-sm);
 }
 
@@ -442,14 +419,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
 .searchBox {
   position: relative;
   flex: 1;
-  min-width: 260px;
+  min-width: 180px;
   display: flex;
   align-items: center;
 }
@@ -475,7 +452,6 @@
 
 .searchInput:focus {
   border-color: var(--text-primary) !important;
-  box-shadow: 0 0 0 3px rgba(9, 9, 11, 0.05) !important;
 }
 
 .clearSearchBtn {
@@ -498,7 +474,8 @@
 
 .bulkActions {
   display: flex;
-  gap: 10px;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .actionLinkBtn {
@@ -516,8 +493,8 @@
 
 .filterGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
   border-top: 1px solid var(--surface-border);
   padding-top: 14px;
 }
@@ -550,16 +527,16 @@
   border-color: var(--text-primary) !important;
 }
 
-/* Accordion Card */
+/* Accordion */
 .accordionCard {
-  padding: 0 !important; /* Override default card padding */
+  padding: 0 !important;
   overflow: hidden;
   border: 1px solid var(--surface-border);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .accordionHeader {
-  padding: 16px 20px;
+  padding: 14px 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -582,12 +559,13 @@
   flex-direction: column;
   gap: 6px;
   flex: 1;
+  min-width: 0;
 }
 
 .accordionTitleContainer {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
@@ -600,6 +578,7 @@
 .accordionDateText {
   font-size: 12px;
   color: var(--text-muted);
+  white-space: nowrap;
 }
 
 .accordionQuickInfo {
@@ -608,6 +587,7 @@
   font-size: 12px;
   color: var(--text-secondary);
   font-weight: 500;
+  flex-wrap: wrap;
 }
 
 .accordionQuickDivider {
@@ -617,7 +597,8 @@
 .accordionHeaderRight {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  flex-shrink: 0;
 }
 
 .accordionArrow {
@@ -632,20 +613,14 @@
 }
 
 .accordionBody {
-  padding: 20px;
+  padding: 18px;
   background-color: var(--surface);
   animation: slideDown 0.2s ease-out forwards;
 }
 
 @keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* Pagination */
@@ -654,13 +629,14 @@
   justify-content: center;
   align-items: center;
   gap: 6px;
-  margin-top: 24px;
+  margin-top: 20px;
   padding: 12px 0;
+  flex-wrap: wrap;
 }
 
 .pageBtn {
-  min-width: 32px;
-  height: 32px;
+  min-width: 36px;
+  height: 36px;
   padding: 0 8px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--surface-border);
@@ -673,6 +649,7 @@
   justify-content: center;
   cursor: pointer;
   transition: var(--transition);
+  touch-action: manipulation;
 }
 
 .pageBtn:hover:not(:disabled) {
@@ -697,4 +674,118 @@
   padding: 0 4px;
 }
 
+/* Profile action area */
+.profileAction {
+  margin-top: 8px;
+}
 
+/* ─── RESPONSIVE BREAKPOINTS ─── */
+
+/* Tablet: ≤900px */
+@media (max-width: 900px) {
+  .dashboardSplit {
+    grid-template-columns: 1fr;
+  }
+  .historyList {
+    max-height: none;
+  }
+}
+
+/* Tablet small: ≤768px */
+@media (max-width: 768px) {
+  .header {
+    padding: 10px 16px;
+    min-height: auto;
+  }
+  .main {
+    padding: 16px;
+    gap: 16px;
+  }
+  .statsGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .chartCard {
+    padding: 16px 8px;
+    min-height: 180px;
+  }
+}
+
+/* Mobile: ≤640px */
+@media (max-width: 640px) {
+  .profileCard {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px 16px;
+    gap: 12px;
+  }
+  .profileMetaGrid {
+    justify-content: center;
+    gap: 12px 20px;
+  }
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .bodyGrid {
+    grid-template-columns: 1fr;
+  }
+  .profileAction {
+    width: 100%;
+  }
+  .profileAction button {
+    width: 100%;
+  }
+  .filterRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .searchBox {
+    min-width: 0;
+    width: 100%;
+  }
+  .bulkActions {
+    justify-content: flex-end;
+  }
+}
+
+/* Mobile: ≤480px */
+@media (max-width: 480px) {
+  .filterGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .accordionHeader {
+    padding: 12px 14px;
+  }
+  .accordionBody {
+    padding: 14px;
+  }
+  .pagination {
+    gap: 4px;
+  }
+  .pageBtn {
+    min-width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+  .historyCard {
+    padding: 14px;
+  }
+}
+
+/* Very small: ≤360px */
+@media (max-width: 360px) {
+  .filterGrid {
+    grid-template-columns: 1fr;
+  }
+  .profileInfo h2 {
+    font-size: 17px;
+  }
+  .statsValue {
+    font-size: 15px;
+  }
+  .logo {
+    font-size: 16px;
+  }
+}

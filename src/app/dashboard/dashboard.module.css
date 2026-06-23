@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 32px;
+  padding: 0 24px;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -22,39 +22,55 @@
 .headerLeft {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  min-width: 0;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: var(--primary);
+  gap: 10px;
+  color: #ffffff;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+
+.logo img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.15);
+  flex-shrink: 0;
 }
 
 .divider {
   color: var(--surface-border);
+  flex-shrink: 0;
 }
 
 .nurseIdentity {
   font-size: 14px;
   color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .logoutBtn {
   font-size: 14px;
   padding: 6px 12px;
   gap: 6px;
+  flex-shrink: 0;
 }
 
 .main {
   flex: 1;
-  padding: 32px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 24px;
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
@@ -62,14 +78,14 @@
 
 .statsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
 }
 
 .statCard {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
 }
 
 .statIcon {
@@ -83,14 +99,14 @@
 }
 
 .statInfo h3 {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--text-secondary);
   font-weight: 500;
   margin-bottom: 4px;
 }
 
 .statValue {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 700;
   color: var(--text-primary);
   line-height: 1.1;
@@ -111,25 +127,21 @@
 .dashboardSplit {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 32px;
-}
-
-@media (max-width: 1024px) {
-  .dashboardSplit {
-    grid-template-columns: 1fr;
-  }
+  gap: 24px;
 }
 
 .activeSection, .patientsSection {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
 .sectionHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .sectionHeader h2 {
@@ -212,6 +224,7 @@
   padding-left: 46px;
 }
 
+/* ─── Responsive Table ─── */
 .tableContainer {
   background-color: var(--surface);
   border: 1px solid var(--surface-border);
@@ -227,22 +240,23 @@
 }
 
 .table th {
-  background-color: var(--background);
-  color: var(--text-secondary);
+  background-color: #75C4D9 !important;
+  color: #0f172a !important;
   font-weight: 600;
   font-size: 14px;
   padding: 14px 18px;
-  border-bottom: 1px solid var(--surface-border);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 @media (prefers-color-scheme: dark) {
   .table th {
-    background-color: rgba(0, 0, 0, 0.15);
+    background-color: #75C4D9 !important;
+    color: #0f172a !important;
   }
 }
 
 .table td {
-  padding: 16px 18px;
+  padding: 14px 18px;
   border-bottom: 1px solid var(--surface-border);
   font-size: 14px;
   color: var(--text-secondary);
@@ -260,6 +274,7 @@
   font-family: var(--font-outfit);
   font-weight: 600;
   color: var(--primary);
+  white-space: nowrap;
 }
 
 .patientNameCol {
@@ -311,7 +326,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 16px;
 }
 
 .modalCard {
@@ -319,6 +334,8 @@
   max-width: 560px;
   box-shadow: var(--shadow-lg);
   border: 1px solid var(--surface-border);
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .modalHeader {
@@ -366,25 +383,211 @@
   margin-top: 12px;
 }
 
-@media (max-width: 640px) {
-  .divider, .nurseIdentity {
-    display: none;
-  }
-  .header {
-    padding: 0 16px;
-  }
-  .main {
-    padding: 16px;
-    gap: 20px;
+/* ─── Uiverse Buttons ─── */
+/* From Uiverse.io by TCdesign-dev */
+.registerBtn {
+  display: inline-block;
+  border-radius: 7px;
+  border: none;
+  background: #1875FF;
+  color: white;
+  font-family: inherit;
+  text-align: center;
+  font-size: 13px;
+  box-shadow: 0px 14px 56px -11px #1875FF;
+  width: 13em;
+  padding: 0.8em 1em;
+  transition: all 0.4s;
+  cursor: pointer;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.registerBtn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.4s;
+}
+
+.registerBtn span:after {
+  content: ' คนไข้ใหม่';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.7s;
+  white-space: nowrap;
+}
+
+.registerBtn:hover span {
+  padding-right: 4.8em;
+}
+
+.registerBtn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+/* From Uiverse.io by TCdesign-dev - for history view */
+.historyBtn {
+  display: inline-block;
+  border-radius: 7px;
+  border: none;
+  background: #1875FF;
+  color: white;
+  font-family: inherit;
+  text-align: center;
+  font-size: 13px;
+  box-shadow: 0px 14px 56px -11px #1875FF;
+  width: 11em;
+  padding: 0.8em 1.2em;
+  transition: all 0.4s;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.historyBtn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.4s;
+}
+
+.historyBtn span:after {
+  content: ' และรายงาน';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.7s;
+  white-space: nowrap;
+}
+
+.historyBtn:hover span {
+  padding-right: 5.2em;
+}
+
+.historyBtn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+/* ─── RESPONSIVE BREAKPOINTS ─── */
+
+/* Tablet: ≤1024px */
+@media (max-width: 1024px) {
+  .statsGrid {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
-@media (max-width: 480px) {
+/* Mobile Large: ≤768px */
+@media (max-width: 768px) {
+  .header {
+    height: auto;
+    padding: 12px 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nurseIdentity {
+    display: none;
+  }
+  .divider {
+    display: none;
+  }
+  .main {
+    padding: 16px;
+    gap: 16px;
+  }
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .statCard {
+    gap: 12px;
+  }
+  .statValue {
+    font-size: 22px;
+  }
+}
+
+/* Mobile: ≤640px */
+@media (max-width: 640px) {
+  .sectionHeader {
+    align-items: flex-start;
+  }
+  .sectionHeader h2 {
+    font-size: 15px;
+  }
+  .registerBtn {
+    width: auto;
+    padding: 0.7em 1em;
+    font-size: 12px;
+  }
+  .registerBtn span:after {
+    content: '';
+  }
+  .registerBtn:hover span {
+    padding-right: 0;
+  }
+  /* Compact table on mobile: hide blood group column */
+  .table th:nth-child(3),
+  .table td:nth-child(3) {
+    display: none;
+  }
+  .table th,
+  .table td {
+    padding: 12px 10px;
+    font-size: 13px;
+  }
+  .historyBtn {
+    width: auto;
+    padding: 0.6em 0.8em;
+    font-size: 12px;
+  }
+  .historyBtn span:after {
+    content: '';
+  }
+  .historyBtn:hover span {
+    padding-right: 0;
+  }
   .modalFormGrid {
     grid-template-columns: 1fr;
   }
   .modalCard {
     padding: 20px 16px;
   }
+  .modalActions {
+    flex-direction: column-reverse;
+  }
+  .modalActions button {
+    width: 100%;
+  }
 }
 
+/* Very small phones: ≤360px */
+@media (max-width: 360px) {
+  .header {
+    padding: 10px 12px;
+  }
+  .logo {
+    font-size: 16px;
+  }
+  .logo svg {
+    width: 20px;
+    height: 20px;
+  }
+  .logoutBtn {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+  .main {
+    padding: 12px;
+  }
+  .table th,
+  .table td {
+    padding: 10px 8px;
+    font-size: 12px;
+  }
+}

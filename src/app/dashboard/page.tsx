@@ -192,8 +192,8 @@ export default function NurseDashboard() {
         {/* Stats Section */}
         <section className={styles.statsGrid}>
           <div className={`${styles.statCard} card`}>
-            <div className={styles.statIcon} style={{ backgroundColor: 'var(--primary-light)', color: 'var(--primary)' }}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <div className={styles.statIcon} style={{ backgroundColor: 'transparent', padding: 0 }}>
+              <img src="/logo.png" alt="โลโก้น้ำยาฟอกไต" width="52" height="52" style={{ objectFit: 'contain', borderRadius: '50%' }} />
             </div>
             <div className={styles.statInfo}>
               <h3>รายการเปลี่ยนน้ำยาวันนี้</h3>
@@ -230,9 +230,8 @@ export default function NurseDashboard() {
           <section className={styles.patientsSection}>
             <div className={styles.sectionHeader}>
               <h2>ทำเนียบคนไข้ฟอกไต ({patients.length})</h2>
-              <button onClick={() => setShowRegisterModal(true)} className="btn btn-primary btn-sm">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                ลงทะเบียนคนไข้ใหม่
+              <button onClick={() => setShowRegisterModal(true)} className={styles.registerBtn}>
+                <span>ลงทะเบียน</span>
               </button>
             </div>
 
@@ -278,10 +277,9 @@ export default function NurseDashboard() {
                             <div className={styles.actionCell}>
                               <button
                                 onClick={() => router.push(`/patients/${patient.id}`)}
-                                className="btn btn-primary"
-                                style={{ padding: '6px 12px', fontSize: '13px', width: '100%' }}
+                                className={styles.historyBtn}
                               >
-                                ดูประวัติและรายงาน
+                                <span>ดูประวัติ</span>
                               </button>
                             </div>
                           </td>

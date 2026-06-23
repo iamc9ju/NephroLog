@@ -76,3 +76,19 @@
 .cancelBtn:hover {
   background-color: var(--primary-light);
 }
+
+@media (max-width: 480px) {
+  .dialog {
+    padding: 20px 16px;
+  }
+  .actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .confirmBtn,
+  .cancelBtn {
+    width: 100%;
+    text-align: center;
+    padding: 12px 20px;
+  }
+}

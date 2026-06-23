@@ -170,12 +170,33 @@
   color: var(--primary);
 }
 
-@media (max-width: 400px) {
+@media (max-width: 480px) {
   .loginCard {
-    padding: 24px 16px;
+    padding: 28px 20px;
   }
   .wrapper {
     padding: 16px;
+    align-items: flex-start;
+    padding-top: 40px;
+  }
+  .header h2 {
+    font-size: 19px;
   }
 }
 
+@media (max-width: 360px) {
+  .loginCard {
+    padding: 24px 14px;
+  }
+  .wrapper {
+    padding: 12px;
+    padding-top: 30px;
+  }
+  .header h2 {
+    font-size: 17px;
+  }
+  .logoIcon {
+    width: 48px;
+    height: 48px;
+  }
+}

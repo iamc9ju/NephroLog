@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Outfit, Anuphan } from "next/font/google";
 import "./globals.css";
 
@@ -18,6 +18,14 @@ export const metadata: Metadata = {
   description: "ระบบบันทึกการเปลี่ยนถ่ายน้ำยาฟอกไตและติดตามขั้นตอนการทำงานแบบเรียลไทม์",
 };
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+};
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -26,9 +34,10 @@ export default function RootLayout({
   return (
     <html
       lang="th"
-      className={`${outfit.variable} ${anuphan.variable} h-full antialiased`}
+      className={`${outfit.variable} ${anuphan.variable}`}
+      style={{ minHeight: '100%' }}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>{children}</body>
     </html>
   );
 }

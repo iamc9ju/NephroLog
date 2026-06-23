@@ -334,3 +334,56 @@ header [class*="patientHn"], header [class*="cycleBadge"], header [class*="hnLab
   color: #ffffff !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
+
+/* ─── GLOBAL RESPONSIVE UTILITIES ─── */
+
+/* Ensure inputs and buttons don't zoom on focus on iOS */
+input, select, textarea {
+  font-size: max(16px, 14px);
+}
+
+@media (min-width: 640px) {
+  input, select, textarea {
+    font-size: 14px;
+  }
+}
+
+/* Minimum touch target size (WCAG 2.5.8) */
+button, [role="button"], a {
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
+/* Prevent horizontal scroll globally */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Better scrollable containers on iOS */
+.card {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* .btn-sm overrides for small buttons in headers */
+.btn-sm {
+  padding: 7px 14px;
+  font-size: 13px;
+}
+
+/* Responsive padding for card on mobile */
+@media (max-width: 480px) {
+  .card {
+    padding: 16px;
+    border-radius: var(--radius-md);
+  }
+}
+
+@media (max-width: 360px) {
+  .card {
+    padding: 14px;
+  }
+  body {
+    font-size: 14px;
+  }
+}
