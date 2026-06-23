@@ -977,7 +977,7 @@
 .startSessionBtn {
   width: auto;
   white-space: nowrap;
-  background: linear-gradient(135deg, #1875FF 0%, #005ae6 100%);
+  background-color: var(--primary);
   color: white;
   border: none;
   padding: 14px 28px;
@@ -994,6 +994,7 @@
 }
 
 .startSessionBtn:hover {
+  background-color: var(--primary-hover);
   transform: translateY(-2px);
   box-shadow: 0 12px 24px -5px rgba(24, 117, 255, 0.5);
 }
