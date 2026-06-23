@@ -942,10 +942,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 32px;
-  background-image: url('/bg-profile-card.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: linear-gradient(135deg, var(--surface) 0%, var(--primary-light) 100%);
+  backdrop-filter: blur(10px);
   border-radius: 24px;
   padding: 32px;
   border: 1px solid rgba(228, 228, 231, 0.6);
