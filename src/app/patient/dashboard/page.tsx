@@ -66,6 +66,7 @@ export default function PatientDashboard() {
   const [patient, setPatient] = useState<Patient | null>(null);
   const [sessions, setSessions] = useState<Session[]>([]);
   const [loading, setLoading] = useState(true);
+  const [avatarSrc, setAvatarSrc] = useState('/avatar-boy.png');
 
   // Redesign history states
   const [expandedSessionIds, setExpandedSessionIds] = useState<Record<string, boolean>>({});
@@ -76,6 +77,18 @@ export default function PatientDashboard() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [drainColorFilter, setDrainColorFilter] = useState('all');
+
+  // Load avatar from localStorage when patient state is set
+  useEffect(() => {
+    if (patient?.id) {
+      const savedAvatar = localStorage.getItem(`patient_avatar_${patient.id}`);
+      if (savedAvatar) {
+        setAvatarSrc(savedAvatar);
+      } else {
+        setAvatarSrc('/avatar-boy.png');
+      }
+    }
+  }, [patient]);
 
 
   const loadData = async () => {
@@ -94,7 +107,6 @@ export default function PatientDashboard() {
       const patientId = meData.user.id;
       
       // Fetch patient profile details
-      // Wait, we can fetch their sessions
       const sRes = await fetch(`/api/sessions?patientId=${patientId}`);
       if (sRes.ok) {
         const sData = await sRes.json();
@@ -106,18 +118,39 @@ export default function PatientDashboard() {
       setPatient({
         id: patientId,
         hn: meData.user.hn,
-        firstName: meData.user.name.split(' ')[0],
-        lastName: meData.user.name.split(' ')[1] || '',
-        birthDate: '', // Can be loaded if we have a direct patient details endpoint, but we can display the name and HN first!
-        bloodGroup: null
+        firstName: meData.user.firstName || meData.user.name.split(' ')[0],
+        lastName: meData.user.lastName || meData.user.name.split(' ')[1] || '',
+        birthDate: meData.user.birthDate || '',
+        bloodGroup: meData.user.bloodGroup || null
       });
-
-      // Let's load full patient profile details from API
-      const pDetailRes = await fetch(`/api/patients`); // Wait, get patients is restricted to nurse. So we can just use the details from user session.
     } catch (err) {
       console.error('Failed to load patient dashboard', err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (!file.type.startsWith('image/')) {
+        alert('กรุณาเลือกไฟล์รูปภาพเท่านั้น');
+        return;
+      }
+      if (file.size > 2 * 1024 * 1024) {
+        alert('ขนาดรูปภาพต้องไม่เกิน 2MB');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        setAvatarSrc(base64String);
+        if (patient?.id) {
+          localStorage.setItem(`patient_avatar_${patient.id}`, base64String);
+        }
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -314,7 +347,21 @@ export default function PatientDashboard() {
         <section className={styles.newProfileCard}>
           <div className={styles.profileMainContent}>
             <div className={styles.avatarWrapper}>
-              <img src="/avatar-boy.png" alt="คนไข้" className={styles.avatarImg} />
+              <div className={styles.avatarContainer}>
+                <img src={avatarSrc} alt="คนไข้" className={styles.avatarImg} />
+                <label htmlFor="avatar-upload" className={styles.editBtn} title="อัพโหลดรูปโปรไฟล์">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                  </svg>
+                </label>
+                <input 
+                  id="avatar-upload" 
+                  type="file" 
+                  accept="image/*" 
+                  onChange={handleAvatarChange} 
+                  className={styles.hiddenInput} 
+                />
+              </div>
             </div>
             
             <div className={styles.profileDetails}>
