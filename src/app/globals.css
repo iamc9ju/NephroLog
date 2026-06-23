@@ -76,7 +76,7 @@
 
 body {
   background-color: var(--background);
-  background-image: linear-gradient(rgba(250, 250, 250, 0.94), rgba(250, 250, 250, 0.94)), url('/bg-dialysis.png');
+  background-image: url('/bg-app.png');
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -91,7 +91,7 @@ body {
 
 @media (prefers-color-scheme: dark) {
   body {
-    background-image: linear-gradient(rgba(9, 9, 11, 0.96), rgba(9, 9, 11, 0.96)), url('/bg-dialysis.png') !important;
+    background-image: linear-gradient(rgba(9, 9, 11, 0.95), rgba(9, 9, 11, 0.95)), url('/bg-app.png') !important;
   }
 }
 
