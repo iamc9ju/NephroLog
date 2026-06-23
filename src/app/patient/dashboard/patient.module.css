@@ -789,3 +789,183 @@
     font-size: 16px;
   }
 }
+
+/* ─── Redesigned Profile Card ─── */
+.newProfileCard {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background-image: url('/bg-profile-card.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 24px;
+  padding: 32px;
+  border: 1px solid rgba(228, 228, 231, 0.6);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+}
+
+.profileMainContent {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+}
+
+.avatarWrapper {
+  flex-shrink: 0;
+}
+
+.avatarImg {
+  width: 130px;
+  height: 130px;
+  object-fit: contain;
+}
+
+.profileDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.profileName {
+  font-size: 32px;
+  font-weight: 800;
+  color: #1e3a8a;
+  margin: 0;
+}
+
+.heartDivider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 0;
+}
+
+.dividerLine {
+  flex: 1;
+  height: 2px;
+  background-color: #dbeafe;
+  max-width: 120px;
+}
+
+.heartIcon {
+  width: 16px;
+  height: 16px;
+  color: #93c5fd;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 4px;
+}
+
+.metaBox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.metaIconBlue {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.metaIconGreen {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background-color: #f0fdf4;
+  color: #16a34a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.metaText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.metaLabel {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.metaVal {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.verticalSeparator {
+  width: 1px;
+  height: 32px;
+  background-color: #e2e8f0;
+}
+
+.profileActionRow {
+  width: 100%;
+}
+
+.startSessionBtn {
+  width: 100%;
+  background: linear-gradient(135deg, #1875FF 0%, #005ae6 100%);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 9999px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 20px -5px rgba(24, 117, 255, 0.4);
+}
+
+.startSessionBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -5px rgba(24, 117, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+  .profileMainContent {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+  .heartDivider {
+    justify-content: center;
+  }
+  .metaRow {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+  }
+  .verticalSeparator {
+    display: none;
+  }
+  .metaBox {
+    justify-content: center;
+    width: 100%;
+  }
+  .profileName {
+    font-size: 26px;
+  }
+}

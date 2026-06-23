@@ -310,26 +310,64 @@ export default function PatientDashboard() {
 
       <main className={styles.main}>
         {/* Profile Card */}
-        <section className={`${styles.profileCard} card`}>
-          <div className={styles.profileAvatar}>
-            <span>{patient?.firstName.charAt(0)}</span>
-          </div>
-          <div className={styles.profileInfo}>
-            <h2>คุณ{patient?.firstName} {patient?.lastName}</h2>
-            <div className={styles.profileMetaGrid}>
-              <div className={styles.metaItem}>
-                <span>เลข HN ประจำตัว</span>
-                <strong>{patient?.hn}</strong>
+        {/* Redesigned Profile Card */}
+        <section className={styles.newProfileCard}>
+          <div className={styles.profileMainContent}>
+            <div className={styles.avatarWrapper}>
+              <img src="/avatar-boy.png" alt="คนไข้" className={styles.avatarImg} />
+            </div>
+            
+            <div className={styles.profileDetails}>
+              <h2 className={styles.profileName}>คุณ{patient?.firstName} {patient?.lastName}</h2>
+              
+              <div className={styles.heartDivider}>
+                <span className={styles.dividerLine}></span>
+                <svg className={styles.heartIcon} viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                <span className={styles.dividerLine}></span>
               </div>
-              <div className={styles.metaItem}>
-                <span>การรักษา</span>
-                <strong>ล้างไตช่องท้อง (CAPD)</strong>
+              
+              <div className={styles.metaRow}>
+                {/* HN Section */}
+                <div className={styles.metaBox}>
+                  <div className={styles.metaIconBlue}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="3" y="4" width="18" height="16" rx="2" ry="2"></rect>
+                      <line x1="7" y1="8" x2="17" y2="8"></line>
+                      <line x1="7" y1="12" x2="17" y2="12"></line>
+                      <line x1="7" y1="16" x2="13" y2="16"></line>
+                    </svg>
+                  </div>
+                  <div className={styles.metaText}>
+                    <span className={styles.metaLabel}>เลข HN ประจำตัว</span>
+                    <strong className={styles.metaVal}>{patient?.hn}</strong>
+                  </div>
+                </div>
+                
+                <div className={styles.verticalSeparator}></div>
+                
+                {/* Treatment Section */}
+                <div className={styles.metaBox}>
+                  <div className={styles.metaIconGreen}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                      <line x1="12" y1="8" x2="12" y2="16"></line>
+                      <line x1="8" y1="12" x2="16" y2="12"></line>
+                    </svg>
+                  </div>
+                  <div className={styles.metaText}>
+                    <span className={styles.metaLabel}>การรักษา</span>
+                    <strong className={styles.metaVal}>ล้างไตช่องท้อง (CAPD)</strong>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div className={styles.profileAction}>
-            <button onClick={startNewSession} className="btn btn-primary">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ marginRight: '6px' }}>
+          
+          <div className={styles.profileActionRow}>
+            <button onClick={startNewSession} className={styles.startSessionBtn}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginRight: '8px' }}>
                 <line x1="12" y1="5" x2="12" y2="19"></line>
                 <line x1="5" y1="12" x2="19" y2="12"></line>
               </svg>
