@@ -202,8 +202,8 @@ export default function NurseDashboard() {
             </div>
           </div>
           <div className={`${styles.statCard} card`}>
-            <div className={styles.statIcon} style={{ backgroundColor: 'var(--warning-light)', color: 'var(--warning)' }}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <div className={styles.statIcon} style={{ backgroundColor: 'transparent', padding: 0 }}>
+              <img src="/logo-active.png" alt="โลโก้กำลังฟอกไต" width="52" height="52" style={{ objectFit: 'contain', borderRadius: '50%' }} />
             </div>
             <div className={styles.statInfo}>
               <h3>กำลังฟอกไตอยู่ในขณะนี้</h3>
