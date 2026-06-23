@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Outfit, Anuphan } from "next/font/google";
 import "./globals.css";
+import MobileOnlyGuard from "@/components/MobileOnlyGuard";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -37,7 +38,11 @@ export default function RootLayout({
       className={`${outfit.variable} ${anuphan.variable}`}
       style={{ minHeight: '100%' }}
     >
-      <body style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>{children}</body>
+      <body style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+        <MobileOnlyGuard>
+          {children}
+        </MobileOnlyGuard>
+      </body>
     </html>
   );
 }

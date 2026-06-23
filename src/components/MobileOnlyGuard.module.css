@@ -1,0 +1,91 @@
+.guardContainer {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #f8fafc;
+  background-image: radial-gradient(#e2e8f0 1.5px, transparent 1.5px), radial-gradient(#e2e8f0 1.5px, #f8fafc 1.5px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  font-family: var(--font-anuphan), sans-serif;
+}
+
+.guardCard {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  padding: 40px 32px;
+  max-width: 450px;
+  width: 100%;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.phoneIconWrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  background-color: #eff6ff;
+  color: #3b82f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.phoneIcon {
+  stroke-width: 2.2;
+}
+
+.guardTitle {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin: 0;
+}
+
+.guardText {
+  font-size: 14.5px;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.instructionBox {
+  width: 100%;
+  background-color: #f1f5f9;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: left;
+  border: 1px dashed #cbd5e1;
+}
+
+.instructionText {
+  font-size: 13.5px;
+  color: #475569;
+  margin-bottom: 8px;
+}
+
+.instructionList {
+  font-size: 13px;
+  color: #64748b;
+  padding-left: 20px;
+  line-height: 1.5;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
